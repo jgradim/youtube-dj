@@ -51,7 +51,11 @@ function unMuteVideo1(){
 		ytplayer1.unMute();
 	}
 }
-function setVolume1(volume){
+function setVideoVolume1(){
+	var volume = parseInt(document.getElementById("volumeSetting1").value);
+        if(isNaN(volume) || volume < 0 || volume > 100) {
+          alert("Please enter a valid volume between 0 and 100.");
+        }
 	if(ytplayer1){
 		ytplayer1.setVolume(volume);
 	}
@@ -78,7 +82,12 @@ function unMuteVideo2(){
 		ytplayer2.unMute();
 	}
 }
-function setVolume2(volume){
+function setVideoVolume2(){
+	var volume = parseInt(document.getElementById("volumeSetting2").value);
+        if(isNaN(volume) || volume < 0 || volume > 100) {
+          alert("Please enter a valid volume between 0 and 100.");
+        }
+        
 	if(ytplayer2){
 		ytplayer2.setVolume(volume);
 	}
@@ -111,7 +120,7 @@ function onPlayerError(errorCode) {
 
 // This function is called when the player changes state
 function onPlayerStateChange(newState) {
-u	pdateHTML("playerState", newState);
+	updateHTML("playerState", newState);
 }
 
 // This function is called when the player changes state
@@ -123,12 +132,13 @@ function onPlayerStateChange2(newState) {
 function updatePlayerInfo() {
 // Also check that at least one function exists since when IE unloads the
 // page, it will destroy the SWF before clearing the interval.
-	if(ytplayer && ytplayer.getDuration) {
-		updateHTML("videoDuration", ytplayer.getDuration());
-		updateHTML("videoCurrentTime", ytplayer.getCurrentTime());
-		updateHTML("bytesTotal", ytplayer.getVideoBytesTotal());
-		updateHTML("startBytes", ytplayer.getVideoStartBytes());
-		updateHTML("bytesLoaded", ytplayer.getVideoBytesLoaded());
+	if(ytplayer1 && ytplayer1.getDuration) {
+		updateHTML("videoDuration", ytplayer1.getDuration());
+		updateHTML("videoCurrentTime", ytplayer1.getCurrentTime());
+		updateHTML("bytesTotal", ytplayer1.getVideoBytesTotal());
+		updateHTML("startBytes", ytplayer1.getVideoStartBytes());
+		updateHTML("bytesLoaded", ytplayer1.getVideoBytesLoaded());
+		updateHTML("volume1", ytplayer1.getVolume());
 	}
 }
 
@@ -140,6 +150,7 @@ function updatePlayerInfo2() {
 		updateHTML("bytesTotal2", ytplayer2.getVideoBytesTotal());
 		updateHTML("startBytes2", ytplayer2.getVideoStartBytes());
 		updateHTML("bytesLoaded2", ytplayer2.getVideoBytesLoaded());
+		updateHTML("volume2", ytplayer2.getVolume());
 	}
 }
 
@@ -148,14 +159,14 @@ function onYouTubePlayerReady(playerId) {
 	// The player ID comes from the "playerapiid" parameter that was set
 	// when the embedded player was loaded
 	if(playerId == "player1") {
-		ytplayer = document.getElementById("ytPlayer");
+		ytplayer1 = document.getElementById("ytPlayer1");
 		// This causes the updatePlayerInfo function to be called every 250ms to
 		// get fresh data from the player
 		setInterval(updatePlayerInfo, 250);
 		updatePlayerInfo();
-		ytplayer.addEventListener("onStateChange", "onPlayerStateChange");
-		ytplayer.addEventListener("onError", "onPlayerError");
-		ytplayer.cueVideoById("ylLzyHk54Z0");
+		ytplayer1.addEventListener("onStateChange", "onPlayerStateChange");
+		ytplayer1.addEventListener("onError", "onPlayerError");
+		ytplayer1.cueVideoById("jI5_wV0Pk_k");
 	}
 	else if(playerId == "player2") {
 		ytplayer2 = document.getElementById("ytPlayer2");
@@ -174,7 +185,7 @@ function loadPlayer1() {
 	// Lets Flash from another domain call JavaScript
 	var params = { allowScriptAccess: "always" };
 	// The element id of the Flash embed
-	var atts = { id: "ytPlayer" };
+	var atts = { id: "ytPlayer1" };
 	// All of the magic handled by SWFObject (http://code.google.com/p/swfobject/)
 	swfobject.embedSWF("http://www.youtube.com/apiplayer?" +
 	"&enablejsapi=1&playerapiid=player1", 
