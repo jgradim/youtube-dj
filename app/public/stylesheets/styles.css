@@ -1,0 +1,39 @@
+/* DEFAULTS
+------------------------------------------------------------------------------*/
+body {
+  font: normal normal 16px/1.5em Arial,Helvetica,sans-serif;
+}
+
+/* WRAPPER
+------------------------------------------------------------------------------*/
+div#wrapper {
+  width: 1024px;
+  margin: 0 auto;
+}
+
+/* PLAYERS CONTAINER
+------------------------------------------------------------------------------*/
+div.player { float: left; }
+
+div.player {
+  width: 45%;
+  height: 500px;
+  background: #c00;
+}
+
+div.volume, div.video { float: left; height: 300px; margin-left: 10px; }
+div.volume { width: 30px; background: #00c; }
+div.video { width: 400px; background: #cc0; }
+
+div.controls { clear:left; height: 500px; padding: 10px 0 0 50px; }
+
+div.loop { width: 400px; height: 30px; background: #0cc; }
+
+/* CROSSFADE
+------------------------------------------------------------------------------*/
+div#crossfade { float: left; }
+div#crossfade {
+  width: 10%;
+  height: 500px;
+  background: #0c0;
+}
