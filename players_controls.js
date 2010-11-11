@@ -24,7 +24,7 @@ function nextVideo2(){
 	var newSong = playlist1.shift();
 
 	if(newSong === undefined){
-		alert("No more songs in the playlist1!");
+		alert("No more songs in the playlist2!");
 	}else{
 		loadVideo(newSong);
 	}
