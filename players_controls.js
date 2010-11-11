@@ -51,11 +51,7 @@ function unMuteVideo1(){
 		ytplayer1.unMute();
 	}
 }
-function setVideoVolume1(){
-	var volume = parseInt(document.getElementById("volumeSetting1").value);
-        if(isNaN(volume) || volume < 0 || volume > 100) {
-          alert("Please enter a valid volume between 0 and 100.");
-        }
+function setVideoVolume1(volume){
 	if(ytplayer1){
 		ytplayer1.setVolume(volume);
 	}
@@ -82,12 +78,7 @@ function unMuteVideo2(){
 		ytplayer2.unMute();
 	}
 }
-function setVideoVolume2(){
-	var volume = parseInt(document.getElementById("volumeSetting2").value);
-        if(isNaN(volume) || volume < 0 || volume > 100) {
-          alert("Please enter a valid volume between 0 and 100.");
-        }
-        
+function setVideoVolume2(volume){
 	if(ytplayer2){
 		ytplayer2.setVolume(volume);
 	}
@@ -138,7 +129,6 @@ function updatePlayerInfo() {
 		updateHTML("bytesTotal", ytplayer1.getVideoBytesTotal());
 		updateHTML("startBytes", ytplayer1.getVideoStartBytes());
 		updateHTML("bytesLoaded", ytplayer1.getVideoBytesLoaded());
-		updateHTML("volume1", ytplayer1.getVolume());
 	}
 }
 
@@ -150,7 +140,6 @@ function updatePlayerInfo2() {
 		updateHTML("bytesTotal2", ytplayer2.getVideoBytesTotal());
 		updateHTML("startBytes2", ytplayer2.getVideoStartBytes());
 		updateHTML("bytesLoaded2", ytplayer2.getVideoBytesLoaded());
-		updateHTML("volume2", ytplayer2.getVolume());
 	}
 }
 
@@ -189,7 +178,7 @@ function loadPlayer1() {
 	// All of the magic handled by SWFObject (http://code.google.com/p/swfobject/)
 	swfobject.embedSWF("http://www.youtube.com/apiplayer?" +
 	"&enablejsapi=1&playerapiid=player1", 
-	"videoDiv", "480", "295", "8", null, null, params, atts);
+	"videoDiv1", "480", "295", "8", null, null, params, atts);
 }
 
 function loadPlayer2(){                         
