@@ -24,7 +24,7 @@ function nextVideo2(){
 	var newSong = playlist1.shift();
 
 	if(newSong === undefined){
-		alert("No more songs in the playlist2!");
+		alert("No more songs in the playlist1!");
 	}else{
 		loadVideo(newSong);
 	}
@@ -125,22 +125,22 @@ function updatePlayerInfo() {
 // Also check that at least one function exists since when IE unloads the
 // page, it will destroy the SWF before clearing the interval.
 	if(ytplayer1 && ytplayer1.getDuration) {
-		updateHTML("videoDuration", ytplayer1.getDuration());
+		/*updateHTML("videoDuration", ytplayer1.getDuration());
 		updateHTML("videoCurrentTime", ytplayer1.getCurrentTime());
 		updateHTML("bytesTotal", ytplayer1.getVideoBytesTotal());
 		updateHTML("startBytes", ytplayer1.getVideoStartBytes());
-		updateHTML("bytesLoaded", ytplayer1.getVideoBytesLoaded());
+		updateHTML("bytesLoaded", ytplayer1.getVideoBytesLoaded());*/
 	}
 }
 
 // Display information about the current state of the player
 function updatePlayerInfo2() {
 	if(ytplayer2 && ytplayer2.getDuration) {
-		updateHTML("videoDuration2", ytplayer2.getDuration());
+		/*updateHTML("videoDuration2", ytplayer2.getDuration());
 		updateHTML("videoCurrentTime2", ytplayer2.getCurrentTime());
 		updateHTML("bytesTotal2", ytplayer2.getVideoBytesTotal());
 		updateHTML("startBytes2", ytplayer2.getVideoStartBytes());
-		updateHTML("bytesLoaded2", ytplayer2.getVideoBytesLoaded());
+		updateHTML("bytesLoaded2", ytplayer2.getVideoBytesLoaded());*/
 	}
 }
 
@@ -179,7 +179,7 @@ function loadPlayer1() {
 	// All of the magic handled by SWFObject (http://code.google.com/p/swfobject/)
 	swfobject.embedSWF("http://www.youtube.com/apiplayer?" +
 	"&enablejsapi=1&playerapiid=player1", 
-	"videoDiv1", "480", "295", "8", null, null, params, atts);
+	"video-div-1", "480", "295", "8", null, null, params, atts);
 }
 
 function loadPlayer2(){                         
@@ -188,7 +188,7 @@ function loadPlayer2(){
 	var atts = { id: "ytPlayer2" };
 	swfobject.embedSWF("http://www.youtube.com/apiplayer?" +
 	"&enablejsapi=1&playerapiid=player2", 
-	"videoDiv2", "480", "295", "8", null, null, params, atts);
+	"video-div-2", "480", "295", "8", null, null, params, atts);
 }
 
 function _run() {
