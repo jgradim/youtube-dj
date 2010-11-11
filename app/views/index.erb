@@ -1,17 +1,26 @@
 <div class="player">
-  <div class="volume"></div><!-- can't really use html5 range input, falling back to jQuery UI :( -->
-  <div class="video"></div>
-  <div class="controls">
-    <div class="loop"></div><!-- can't really use html5 range input, falling back to jQuery UI :( -->
-    <button class="play">Play/Pause</button>
-    <button class="mute">Mute/Unmute</button>
+
+  <div class="volume"></div>
+  
+  <div class="video">
+    <div id="video-div-1"></div>
+  </div>
+  
+  <div class="controls" data-player-id="1">
+    <div class="loop"></div>
+    <button class="play" data-playing="false">Play/Pause</button>
+    <button class="mute" data-muted="false">Mute/Unmute</button>
     <button class="next">Next Song</button>
     <input type="checkbox" class="loop">
     <label>Loop</label>
   </div>
+  
   <ol class="queue">
   </ol>
+  
 </div>
+
+<!-- -->
 <div id="crossfade">
   <div id="crossfade-control"></div>
 </div>
