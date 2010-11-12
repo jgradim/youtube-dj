@@ -70,6 +70,9 @@ $(document).ready(function() {
     return false;
   });
   
+  // allow sorting of the queued videos
+  $('ol.queue').sortable();
+  
   // record / play buttons status
   $('button#record-set').click(function() { $(this).toggleClass('recording'); return false; });
   $('button#play-set').click(function() { $(this).toggleClass('playing'); return false; });
