@@ -58,6 +58,8 @@ function onYouTubePlayerReady(player_id) {
 		
 	}, 250);
 	
+	// respond to player state changes:
+	//
 	// needs to be on global scope, but still have access to 'ytplayer'
 	// because youtube API only calls functions from strings and does not call
 	// anonymous functions passed directly
@@ -74,9 +76,15 @@ function onYouTubePlayerReady(player_id) {
       li.remove();
 		}
 	}
-	
-	// respond to player state changes
 	ytplayer.addEventListener("onStateChange", "state_changed");
+	
+	// progess / seek bar
+	container_div.find('div.progress').click(function(ev) {
+	  var width = $(this).width();
+	  var pos = ev.clientX - $(this).offset().left;
+	  var percent = pos / width;
+	  ytplayer.seekTo(ytplayer.getDuration()*percent, true);
+	});
 	
 	// volume slider
 	container_div.find('div.volume').slider({
@@ -100,6 +108,7 @@ function onYouTubePlayerReady(player_id) {
 	  }
 	});
 	
+	// video controls
 	container_div.find("button.play").click(function() {
 	  var state = ytplayer.getPlayerState();	  
 	  if(state == PAUSED || state == QUEUED) ytplayer.playVideo();

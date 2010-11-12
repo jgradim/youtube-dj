@@ -48,9 +48,9 @@ div.video { width: 480px; background: #cc0; }
 
 div.loop { width: 480px; font-size: 65%; background: #0cc; }
 
-div.status { clear:left; padding: 10px 0 0 30px; }
+div.status { clear:left; padding: 0 0 0 30px; }
 
-div.player div.progress { height: 10px; }
+div.player div.progress { width: 480px; height: 10px; background: #000; margin-bottom: 10px;}
 div.player div.progress span { display: block; height: 100%; width: 0; background: #fff; }
 
 div.player form {
