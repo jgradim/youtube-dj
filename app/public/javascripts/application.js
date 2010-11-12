@@ -72,4 +72,9 @@ $(document).ready(function() {
     $(this).parent().remove();
     return false;
   });
+  
+  // record / play buttons status
+  $('button.record-set').click(function() { $(this).toggleClass('recording'); return false; });
+  $('button.play-set').click(function() { $(this).toggleClass('playing'); return false; });
+  
 });

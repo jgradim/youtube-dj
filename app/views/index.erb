@@ -11,14 +11,17 @@
     <div id="video-div-1"></div>
   </div>
   
-  <div class="controls" data-player-id="1">
+  <div class="status" data-player-id="1">
     <div class="progress"></div>
     <div class="loop"></div>
-    <button class="play" data-playing="false">Play/Pause</button>
-    <button class="mute" data-muted="false">Mute/Unmute</button>
-    <button class="next">Next Song</button>
-    <input type="checkbox" class="loop">
-    <label>Loop</label>
+    
+    <div class="controls">
+      <button class="play" data-playing="false">Play/Pause</button>
+      <button class="mute" data-muted="false">Mute/Unmute</button>
+      <button class="next">Next Song</button>
+      <input type="checkbox" class="loop" id="loop-1" />
+      <label for="loop-1">Loop</label>
+    </div>
   </div>
   
   <form action="" method="get">
