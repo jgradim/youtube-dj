@@ -33,9 +33,18 @@ function onYouTubePlayerReady(player_id) {
 
   // load video, set listeners
 	var ytplayer = document.getElementById(player_id);
-	//setInterval(updatePlayerInfo, 250);
+	setInterval(function(){	
+		if(container_div.find('input.loop').is(":checked")){
+			var values = container_div.find('div.loop').slider("values");
+			var time = [(ytplayer.getDuration()*values[0])/100,
+						(ytplayer.getDuration()*values[1])/100];
+			if(ytplayer.getCurrentTime() >= time[1]){
+				ytplayer.seekTo(time[0], true);
+			}
+		}	
+	}, 250);
 	//updatePlayerInfo();
-	//ytplayer.addEventListener("onStateChange", "onPlayerStateChange"+player_id);
+	ytplayer.addEventListener("onStateChange", "onPlayerStateChange"+player_id);
 	//ytplayer.addEventListener("onError", "onPlayerError");
 	ytplayer.cueVideoById("jI5_wV0Pk_k");
 	
@@ -55,7 +64,6 @@ function onYouTubePlayerReady(player_id) {
 	
 	
 	// loop
-	
 	container_div.find('div.loop').slider({
 	  animate: true,
 	  values: [ 0, 100 ],
