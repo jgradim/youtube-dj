@@ -65,7 +65,26 @@ div.player form input {
 /* VIDEO CONTROLS
 ------------------------------------------------------------------------------*/
 div.controls { padding: 10px 0; }
-div.controls button { width: 100px; height: 70px; margin-right: 10px; }
+div.controls button {
+  width: 100px;
+  height: 70px;
+  margin-right: 10px;
+  border: 2px solid #292929;
+  border-radius: 3px;
+  text-indent: -99999px;
+}
+
+button.play { background: #333 url(../images/play_pause.png) no-repeat 0 center; }
+button.play:hover { background: #333 url(../images/play_pause.png) no-repeat -100px center; }
+button.play.playing { background: #333 url(../images/play_pause.png) no-repeat -200px center; }
+
+button.mute { background: #333 url(../images/mute.png) no-repeat 0 center; }
+button.mute:hover { background: #333 url(../images/mute.png) no-repeat -100px center; }
+button.mute.muted { background: #333 url(../images/mute.png) no-repeat -200px center; }
+
+button.next { background: #333 url(../images/next.png) no-repeat 0 center; }
+button.next:hover { background: #333 url(../images/next.png) no-repeat -100px center; }
+button.next:active { background: #333 url(../images/next.png) no-repeat -200px center; }
 
 /* SEARCH RESULTS
 ------------------------------------------------------------------------------*/

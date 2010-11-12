@@ -74,4 +74,19 @@ $(document).ready(function() {
   $('button#record-set').click(function() { $(this).toggleClass('recording'); return false; });
   $('button#play-set').click(function() { $(this).toggleClass('playing'); return false; });
   
+  // crossfade functionality
+  $("div#crossfade-control").slider({
+    min: -50,
+    max: 50,
+    value: 0,
+    slide: function(ev, ui) {
+      if(ui.value <= 0) {
+        $("div#player-left div.volume").slider('value', ui.value*-2);
+      }
+      else {
+        $("div#player-right div.volume").slider('value', ui.value*-2);
+      }
+    }
+  })
+  
 });
