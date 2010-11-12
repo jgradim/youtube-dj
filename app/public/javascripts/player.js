@@ -33,7 +33,18 @@ function onYouTubePlayerReady(player_id) {
 
   // load video, set listeners
 	var ytplayer = document.getElementById(player_id);
+	
+	//ytplayer.addEventListener("onError", "onPlayerError");
+	ytplayer.cueVideoById("jI5_wV0Pk_k");
+	ytplayer.setVolume(100);
+	
+	// bind player controls to buttons
+	var container_div = $("#"+player_id).parents("div.player");
+	
+	// update player info / status
 	setInterval(function(){	
+	
+	  // perform loop based on range sliders
 		if(container_div.find('input.loop').is(":checked")){
 			var values = container_div.find('div.loop').slider("values");
 			var time = [(ytplayer.getDuration()*values[0])/100,
@@ -41,15 +52,23 @@ function onYouTubePlayerReady(player_id) {
 			if(ytplayer.getCurrentTime() >= time[1]){
 				ytplayer.seekTo(time[0], true);
 			}
-		}	
+		}
 	}, 250);
-	//updatePlayerInfo();
-	ytplayer.addEventListener("onStateChange", "onPlayerStateChange"+player_id);
-	//ytplayer.addEventListener("onError", "onPlayerError");
-	ytplayer.cueVideoById("jI5_wV0Pk_k");
-	ytplayer.setVolume(100);
-	// bind player controls to buttons
-	var container_div = $("#"+player_id).parents("div.player");
+	
+	// respond to player state changes
+	ytplayer.addEventListener("onStateChange", function(state) {
+	
+	  // button state
+	  if(state == PLAYING) { container_div.find('button.play').addClass('playing'); }
+	  if(state == PAUSED) { container_div.find('button.play').removeClass('playing'); }
+	  
+		// time for the next song? (only if not looping)
+		if(!container_div.find('input.loop').is(":checked") && state == ENDED) {
+		  var li = container_div.find('ol.queue li:first');
+      ytplayer.loadVideoById(li.data('video-id'));
+      li.remove();
+		}
+	});
 	
 	// volume slider
 	container_div.find('div.volume').slider({
@@ -63,8 +82,6 @@ function onYouTubePlayerReady(player_id) {
 		ytplayer.setVolume(ui.value);
 	  }
 	});
-	
-	
 	
 	// loop
 	container_div.find('div.loop').slider({
