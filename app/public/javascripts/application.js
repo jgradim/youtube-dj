@@ -4,8 +4,8 @@ String.prototype.yt_id = function() {
 $(document).ready(function() {
 
   // create video players
-  create_player("#player-left", 1);
-  //create_player("#player-right", 2);
+  create_player("#player-left",  1);
+  create_player("#player-right", 2);
 
   // mustache templates
   var searched_video, queued_video;

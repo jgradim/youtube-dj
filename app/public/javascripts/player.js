@@ -66,7 +66,9 @@ function onYouTubePlayerReady(player_id) {
 	// needs to be on global scope, but still have access to 'ytplayer'
 	// because youtube API only calls functions from strings and does not call
 	// anonymous functions passed directly
-	window.state_changed = function(state) {
+	window.state_changed_left = function(state) {
+	
+	  var container_div = $("div#player-left");
 	
 	  // button state
 	  if(state == PLAYING) { container_div.find('button.play').addClass('playing'); }
@@ -79,7 +81,23 @@ function onYouTubePlayerReady(player_id) {
       li.remove();
 		}
 	}
-	ytplayer.addEventListener("onStateChange", "state_changed");
+	window.state_changed_right = function(state) {
+	
+	  var container_div = $("div#player-right");
+	
+	  // button state
+	  if(state == PLAYING) { container_div.find('button.play').addClass('playing'); }
+	  if(state == PAUSED) { container_div.find('button.play').removeClass('playing'); }
+	  
+		// time for the next song? (only if not looping)
+		if(!container_div.find('input.loop').is(":checked") && state == ENDED) {
+		  var li = container_div.find('ol.queue li:first');
+      ytplayer.loadVideoById(li.data('video-id'));
+      li.remove();
+		}
+	}
+	if(player_id == "ytplayer1") ytplayer.addEventListener("onStateChange", "state_changed_left");
+	if(player_id == "ytplayer2") ytplayer.addEventListener("onStateChange", "state_changed_right");
 	
 	// progess / seek bar
 	container_div.find('div.progress').click(function(ev) {
@@ -102,25 +120,6 @@ function onYouTubePlayerReady(player_id) {
 	  }
 	});
 	
-	// loop
-	container_div.find('div.loop').slider({
-	  animate: true,
-	  values: [ 0, 100 ],
-	  slide: function(event, ui) {
-	    var ll = ui.values[0] * container_div.find('div.loop').width() / 100 + 12;
-	    var lr = ui.values[1] * container_div.find('div.loop').width() / 100 + 12;
-		  container_div.find('span.loop-left').css({ left: ll });
-		  container_div.find('span.loop-right').css({ left: lr  });
-	  },
-	  change: function(event, ui) {
-	    var ll = ui.values[0] * container_div.find('div.loop').width() / 100 + 12;
-	    var lr = ui.values[1] * container_div.find('div.loop').width() / 100 + 12;
-		  container_div.find('span.loop-left').css({ left: ll });
-		  container_div.find('span.loop-right').css({ left: lr  });
-	  }
-	}).slider('values', 0, [0]).slider('values', 0, [100]);
-	
-	
 	// video controls
 	container_div.find("button.play").click(function() {
 	  var state = ytplayer.getPlayerState();	  
@@ -139,4 +138,25 @@ function onYouTubePlayerReady(player_id) {
     ytplayer.loadVideoById(li.data('video-id'));
     li.remove();
   });
+	
+	// loop
+	container_div.find('div.loop').slider({
+	  animate: true,
+	  values: [ 0, 100 ],
+	  slide: function(event, ui) {
+	    var ll = ui.values[0] * container_div.find('div.loop').width() / 100 + 12;
+	    var lr = ui.values[1] * container_div.find('div.loop').width() / 100 + 12;
+		  container_div.find('span.loop-left').css({ left: ll });
+		  container_div.find('span.loop-right').css({ left: lr  });
+	  },
+	  change: function(event, ui) {
+	    var ll = ui.values[0] * container_div.find('div.loop').width() / 100 + 12;
+	    var lr = ui.values[1] * container_div.find('div.loop').width() / 100 + 12;
+		  container_div.find('span.loop-left').css({ left: ll });
+		  container_div.find('span.loop-right').css({ left: lr  });
+	  }
+	}).slider('values', 0, [0]).slider('values', 0, [100]);
+	
+	// ytplayer disappears from now on, for some freakish reason;
 }
+
