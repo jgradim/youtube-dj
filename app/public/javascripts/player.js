@@ -33,8 +33,6 @@ function onYouTubePlayerReady(player_id) {
 
   // load video, set listeners
 	var ytplayer = document.getElementById(player_id);
-	
-	//ytplayer.addEventListener("onError", "onPlayerError");
 	ytplayer.cueVideoById("jI5_wV0Pk_k");
 	ytplayer.setVolume(100);
 	
@@ -55,8 +53,7 @@ function onYouTubePlayerReady(player_id) {
 		}
 	}, 250);
 	
-	// respond to player state changes
-	ytplayer.addEventListener("onStateChange", function(state) {
+	window.state_changed = function(state) {
 	
 	  // button state
 	  if(state == PLAYING) { container_div.find('button.play').addClass('playing'); }
@@ -68,7 +65,10 @@ function onYouTubePlayerReady(player_id) {
       ytplayer.loadVideoById(li.data('video-id'));
       li.remove();
 		}
-	});
+	}
+	
+	// respond to player state changes
+	ytplayer.addEventListener("onStateChange", "state_changed");
 	
 	// volume slider
 	container_div.find('div.volume').slider({
@@ -96,7 +96,6 @@ function onYouTubePlayerReady(player_id) {
 	  var state = ytplayer.getPlayerState();	  
 	  if(state == PAUSED || state == QUEUED) ytplayer.playVideo();
 	  else if(state == PLAYING) ytplayer.pauseVideo();
-    $(this).toggleClass('playing');
   });
   
   container_div.find("button.mute").click(function() {
