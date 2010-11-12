@@ -118,7 +118,8 @@ function onYouTubePlayerReady(player_id) {
 		  container_div.find('span.loop-left').css({ left: ll });
 		  container_div.find('span.loop-right').css({ left: lr  });
 	  }
-	}).trigger('change');
+	}).slider('values', 0, [0]).slider('values', 0, [100]);
+	
 	
 	// video controls
 	container_div.find("button.play").click(function() {
