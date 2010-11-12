@@ -76,10 +76,10 @@ function onYouTubePlayerReady(player_id) {
 	  animate: true,
 	  value: 100,
 	  slide: function(event, ui) {
-		ytplayer.setVolume(ui.value);
+		  ytplayer.setVolume(ui.value);
 	  },
 	  change: function(event, ui) {
-		ytplayer.setVolume(ui.value);
+		  ytplayer.setVolume(ui.value);
 	  }
 	});
 	
