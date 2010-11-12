@@ -34,7 +34,7 @@ function onYouTubePlayerReady(player_id) {
   // load video, set listeners
 	var ytplayer = document.getElementById(player_id);
 	ytplayer.cueVideoById("jI5_wV0Pk_k");
-	ytplayer.setVolume(100);
+	
 	
 	// bind player controls to buttons
 	var container_div = $("#"+player_id).parents("div.player");
@@ -96,8 +96,13 @@ function onYouTubePlayerReady(player_id) {
       li.remove();
 		}
 	}
-	if(player_id == "ytplayer1") ytplayer.addEventListener("onStateChange", "state_changed_left");
-	if(player_id == "ytplayer2") ytplayer.addEventListener("onStateChange", "state_changed_right");
+	if(player_id == "ytplayer1"){
+		ytplayer.addEventListener("onStateChange", "state_changed_left");
+		ytplayer.setVolume(100);
+	}else if(player_id == "ytplayer2"){
+		ytplayer.addEventListener("onStateChange", "state_changed_right");
+		ytplayer.setVolume(0);
+	}
 	
 	// progess / seek bar
 	container_div.find('div.progress').click(function(ev) {
@@ -111,7 +116,7 @@ function onYouTubePlayerReady(player_id) {
 	container_div.find('div.volume').slider({
 	  orientation: 'vertical',
 	  animate: true,
-	  value: 100,
+	  value: ytplayer.getVolume(),
 	  slide: function(event, ui) {
 		  ytplayer.setVolume(ui.value);
 	  },
