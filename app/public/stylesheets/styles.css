@@ -18,11 +18,19 @@ div#record-controls {
   text-align: center;
 }
 div#record-controls button {
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   margin: 0 20px;
-  /*text-indent: -99999px;*/
+  text-indent: -99999px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
 }
+button#record-set { background: url(../images/record.png) no-repeat 0 center; }
+button#record-set:hover { background: url(../images/record.png) no-repeat -70px center; }
+button#record-set.recording { background: url(../images/record.png) no-repeat -140px center; }
+button#play-set { background: url(../images/play.png) no-repeat 0 center; }
+button#play-set:hover { background: url(../images/play.png) no-repeat -70px center; }
+button#play-set.playing { background: url(../images/play.png) no-repeat -140px center; }
 
 /* PLAYERS CONTAINER
 ------------------------------------------------------------------------------*/
@@ -38,9 +46,9 @@ div.volume, div.video { float: left; height: 295px; margin: 10px 0 0 10px; }
 div.volume { width: 30px; background: #00c; }
 div.video { width: 480px; background: #cc0; }
 
-div.controls { clear:left; padding: 10px 0 0 50px; }
-
 div.loop { width: 480px; height: 30px; background: #0cc; }
+
+div.status { clear:left; padding: 10px 0 0 50px; }
 
 div.player form {
   width: 480px;
@@ -53,6 +61,11 @@ div.player form input {
   padding: 10px;
   border: 1px solid #000;
 }
+
+/* VIDEO CONTROLS
+------------------------------------------------------------------------------*/
+div.controls { padding: 10px 0; }
+div.controls button { width: 100px; height: 70px; margin-right: 10px; }
 
 /* SEARCH RESULTS
 ------------------------------------------------------------------------------*/

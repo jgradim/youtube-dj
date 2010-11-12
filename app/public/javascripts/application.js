@@ -1,7 +1,6 @@
 String.prototype.yt_id = function() {
   return this.match(/\/videos\/(.*)$/)[1];
 }
-var r;
 $(document).ready(function() {
 
   // create video players
@@ -37,8 +36,6 @@ $(document).ready(function() {
       cache: false,
       dataType:'jsonp',
       success: function(results) {
-        console.log(results);
-        r = results;
         $.each(results.feed.entry, function(i, result){
           
           var li = Mustache.to_html(searched_video, {
@@ -72,4 +69,9 @@ $(document).ready(function() {
     $(this).parent().remove();
     return false;
   });
+  
+  // record / play buttons status
+  $('button#record-set').click(function() { $(this).toggleClass('recording'); return false; });
+  $('button#play-set').click(function() { $(this).toggleClass('playing'); return false; });
+  
 });

@@ -42,6 +42,13 @@ function onYouTubePlayerReady(player_id) {
 	// bind player controls to buttons
 	var container_div = $("#"+player_id).parents("div.player");
 	
+	// volume slider
+	container_div.find('div.volume').slider({
+	  orientation: 'vertical'
+	});
+	
+	// loop
+	
 	container_div.find("button.play").click(function() {
 	  var state = ytplayer.getPlayerState();	  
 	  if(state == PAUSED || state == QUEUED) ytplayer.playVideo();
