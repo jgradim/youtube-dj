@@ -76,11 +76,11 @@ div.controls button {
 
 button.play { background: #333 url(../images/play_pause.png) no-repeat 0 center; }
 button.play:hover { background: #333 url(../images/play_pause.png) no-repeat -100px center; }
-button.play:active { background: #333 url(../images/play_pause.png) no-repeat -200px center; }
+button.play.playing { background: #333 url(../images/play_pause.png) no-repeat -200px center; }
 
 button.mute { background: #333 url(../images/mute.png) no-repeat 0 center; }
 button.mute:hover { background: #333 url(../images/mute.png) no-repeat -100px center; }
-button.mute:active { background: #333 url(../images/mute.png) no-repeat -200px center; }
+button.mute.muted { background: #333 url(../images/mute.png) no-repeat -200px center; }
 
 button.next { background: #333 url(../images/next.png) no-repeat 0 center; }
 button.next:hover { background: #333 url(../images/next.png) no-repeat -100px center; }

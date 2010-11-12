@@ -68,14 +68,18 @@ function onYouTubePlayerReady(player_id) {
 	  var state = ytplayer.getPlayerState();	  
 	  if(state == PAUSED || state == QUEUED) ytplayer.playVideo();
 	  else if(state == PLAYING) ytplayer.pauseVideo();
+    $(this).toggleClass('playing');
   });
   
   container_div.find("button.mute").click(function() {
     if(ytplayer.isMuted()) ytplayer.unMute();
     else ytplayer.mute();
+    $(this).toggleClass('muted');
   });
   
   container_div.find("button.next").click(function() {
-    
+    var li = container_div.find('ol.queue li:first');
+    ytplayer.loadVideoById(li.data('video-id'));
+    li.remove();
   });
 }
