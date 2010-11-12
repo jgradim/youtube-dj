@@ -1,1 +1,4 @@
 app/log
+.DS_Store
+.rvmrc
+*.swp

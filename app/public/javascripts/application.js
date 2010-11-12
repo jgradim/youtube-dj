@@ -89,7 +89,7 @@ $(document).ready(function() {
 			$("div#player-right div.volume").slider('value', 50);
 		}else if(ui.value < 0){
 			$("div#player-left div.volume").slider('value', 50+(ui.value*-1));
-			$("div#player-right div.volume").slider('value', 50+ui.value*-1);
+			$("div#player-right div.volume").slider('value', 50+ui.value);
 		}else{
 			$("div#player-left div.volume").slider('value', 50+(ui.value*-1));
 			$("div#player-right div.volume").slider('value', 50+ui.value);
