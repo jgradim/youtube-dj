@@ -14,6 +14,16 @@ var PAUSED = 2;
 var BUFFERING = 3;
 var QUEUED = 5;
 
+/* HELPER FUNCTIONS
+*/
+function timestring(seconds) {
+  var m = Math.floor(seconds / 60);
+  var s = Math.floor(seconds % 60);
+  if(m < 10) m = "0"+m;
+  if(s < 10) s = "0"+s;
+  return m+":"+s;
+}
+
 /* PLAYER
 ------------------------------------------------------------------------------*/
 // create_player("#player-left", 1);
@@ -33,7 +43,8 @@ function onYouTubePlayerReady(player_id) {
 
   // load video, set listeners
 	var ytplayer = document.getElementById(player_id);
-	ytplayer.cueVideoById("jI5_wV0Pk_k");
+	ytplayer.loadVideoById("jI5_wV0Pk_k");
+	ytplayer.pauseVideo();
 	
 	
 	// bind player controls to buttons
@@ -43,9 +54,9 @@ function onYouTubePlayerReady(player_id) {
 	setInterval(function(){	
 	
 	  // perform loop based on range sliders
+    var values = container_div.find('div.loop').slider("values");
+	  var time = [(ytplayer.getDuration()*values[0])/100, (ytplayer.getDuration()*values[1])/100];
 		if(container_div.find('input.loop').is(":checked")) {
-			var values = container_div.find('div.loop').slider("values");
-			var time = [(ytplayer.getDuration()*values[0])/100, (ytplayer.getDuration()*values[1])/100];
 			if(ytplayer.getCurrentTime() >= time[1]) {
 				ytplayer.seekTo(time[0], true);
 			}
@@ -56,8 +67,8 @@ function onYouTubePlayerReady(player_id) {
 		container_div.find('div.progress span').css({width: progress+"%"});
 		
 		// update loop labels
-		container_div.find('span.loop-left').text('tempo');
-		container_div.find('span.loop-right').text('tempo');
+		container_div.find('span.loop-left').text(timestring(time[0]));
+		container_div.find('span.loop-right').text(timestring(time[1]));
 		
 	}, 250);
 	
@@ -156,14 +167,14 @@ function onYouTubePlayerReady(player_id) {
 	  values: [ 0, 100 ],
 	  step: 0.1,
 	  slide: function(event, ui) {
-	    var ll = ui.values[0] * container_div.find('div.loop').width() / 100 - 10;
-	    var lr = ui.values[1] * container_div.find('div.loop').width() / 100 + 32;
+	    var ll = ui.values[0] * container_div.find('div.loop').width() / 100 - 17;
+	    var lr = ui.values[1] * container_div.find('div.loop').width() / 100 + 25;
 		  container_div.find('span.loop-left').css({ left: ll });
 		  container_div.find('span.loop-right').css({ left: lr  });
 	  },
 	  change: function(event, ui) {
-	    var ll = ui.values[0] * container_div.find('div.loop').width() / 100 - 10;
-	    var lr = ui.values[1] * container_div.find('div.loop').width() / 100 + 32;
+	    var ll = ui.values[0] * container_div.find('div.loop').width() / 100 - 17;
+	    var lr = ui.values[1] * container_div.find('div.loop').width() / 100 + 25;
 		  container_div.find('span.loop-left').css({ left: ll });
 		  container_div.find('span.loop-right').css({ left: lr  });
 	  }

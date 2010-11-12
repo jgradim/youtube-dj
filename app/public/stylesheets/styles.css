@@ -55,13 +55,16 @@ div.player div.progress span { display: block; height: 100%; width: 0; backgroun
 span.loop-left, span.loop-right {
   position: absolute;
   display: block;
-  width: 30px;
-  height: 20px;
-  padding: 5px;
-  background: #000;
+  width: 55px;
+  height: 40px;
   top: 345px;
   color: #fff;
+  line-height: 52px;
+  font-size: 0.7em;
+  text-align: center;
 }
+span.loop-left { background: url(../images/label_left.png) no-repeat; }
+span.loop-right { background: url(../images/label_right.png) no-repeat; }
 
 div.player form {
   width: 480px;
