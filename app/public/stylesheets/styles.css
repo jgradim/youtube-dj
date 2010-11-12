@@ -28,9 +28,9 @@ div#record-controls button {
 button#record-set { background: url(../images/record.png) no-repeat 0 center; }
 button#record-set:hover { background: url(../images/record.png) no-repeat -70px center; }
 button#record-set.recording { background: url(../images/record.png) no-repeat -140px center; }
-button#play-set { background: url(../images/play.png) no-repeat 0 center; }
-button#play-set:hover { background: url(../images/play.png) no-repeat -70px center; }
-button#play-set.playing { background: url(../images/play.png) no-repeat -140px center; }
+button#play-set { background: url(../images/play_pause.png) no-repeat -15px center; }
+button#play-set:hover { background: url(../images/play_pause.png) no-repeat -115px center; }
+button#play-set.playing { background: url(../images/play_pause.png) no-repeat -215px center; }
 
 /* PLAYERS CONTAINER
 ------------------------------------------------------------------------------*/
@@ -65,9 +65,9 @@ span.loop-left, span.loop-right {
 
 div.player form {
   width: 480px;
-  margin: 10px 0 10px 50px;
+  margin: 30px 0 10px 50px;
   display: block;
-  clear: left; 
+  clear: left;
 }
 div.player form input {
   width: 460px;
@@ -78,7 +78,9 @@ div.player form input {
 /* VIDEO CONTROLS
 ------------------------------------------------------------------------------*/
 div.controls { padding: 60px 0; }
-div.controls button {
+div.controls button, div.controls label {
+  display: block;
+  float: left;
   width: 100px;
   height: 70px;
   margin-right: 10px;
@@ -86,6 +88,7 @@ div.controls button {
   border-radius: 3px;
   text-indent: -99999px;
 }
+div.controls label { width: 95px; height: 65px; }
 
 button.play { background: #333 url(../images/play_pause.png) no-repeat 0 center; }
 button.play:hover { background: #333 url(../images/play_pause.png) no-repeat -100px center; }
@@ -98,6 +101,11 @@ button.mute.muted { background: #333 url(../images/mute.png) no-repeat -200px ce
 button.next { background: #333 url(../images/next.png) no-repeat 0 center; }
 button.next:hover { background: #333 url(../images/next.png) no-repeat -100px center; }
 button.next:active { background: #333 url(../images/next.png) no-repeat -200px center; }
+
+div.player input.loop { display: none; }
+div.player label { background: #333 url(../images/loop.png) no-repeat 0 center; }
+div.player label:hover { background: #333 url(../images/loop.png) no-repeat -100px center; }
+div.player label.looping { background: #333 url(../images/loop.png) no-repeat -200px center; }
 
 /* SEARCH RESULTS
 ------------------------------------------------------------------------------*/

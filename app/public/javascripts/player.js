@@ -138,10 +138,16 @@ function onYouTubePlayerReady(player_id) {
     ytplayer.loadVideoById(li.data('video-id'));
     li.remove();
   });
+  
+  container_div.find('input[type=checkbox]').change(function(){
+    container_div.find('label').toggleClass('looping');
+  });
 	
 	// loop
 	container_div.find('div.loop').slider({
 	  animate: true,
+	  range: true,
+	  step: 0.1,
 	  values: [ 0, 100 ],
 	  slide: function(event, ui) {
 	    var ll = ui.values[0] * container_div.find('div.loop').width() / 100 + 12;
