@@ -52,6 +52,16 @@ div.status { clear:left; padding: 0 0 0 30px; }
 
 div.player div.progress { width: 480px; height: 10px; background: #000; margin-bottom: 10px;}
 div.player div.progress span { display: block; height: 100%; width: 0; background: #fff; }
+span.loop-left, span.loop-right {
+  position: absolute;
+  display: block;
+  width: 30px;
+  height: 20px;
+  padding: 5px;
+  background: #000;
+  top: 345px;
+  color: #fff;
+}
 
 div.player form {
   width: 480px;
@@ -67,7 +77,7 @@ div.player form input {
 
 /* VIDEO CONTROLS
 ------------------------------------------------------------------------------*/
-div.controls { padding: 10px 0; }
+div.controls { padding: 60px 0; }
 div.controls button {
   width: 100px;
   height: 70px;

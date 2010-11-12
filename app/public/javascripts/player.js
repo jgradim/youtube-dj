@@ -43,11 +43,10 @@ function onYouTubePlayerReady(player_id) {
 	setInterval(function(){	
 	
 	  // perform loop based on range sliders
-		if(container_div.find('input.loop').is(":checked")){
+		if(container_div.find('input.loop').is(":checked")) {
 			var values = container_div.find('div.loop').slider("values");
-			var time = [(ytplayer.getDuration()*values[0])/100,
-						(ytplayer.getDuration()*values[1])/100];
-			if(ytplayer.getCurrentTime() >= time[1]){
+			var time = [(ytplayer.getDuration()*values[0])/100, (ytplayer.getDuration()*values[1])/100];
+			if(ytplayer.getCurrentTime() >= time[1]) {
 				ytplayer.seekTo(time[0], true);
 			}
 		}
@@ -55,6 +54,10 @@ function onYouTubePlayerReady(player_id) {
 		// update progress bar
 		var progress = ytplayer.getCurrentTime() / ytplayer.getDuration() * 100;
 		container_div.find('div.progress span').css({width: progress+"%"});
+		
+		// update loop labels
+		container_div.find('span.loop-left').text('tempo');
+		container_div.find('span.loop-right').text('tempo');
 		
 	}, 250);
 	
@@ -104,9 +107,18 @@ function onYouTubePlayerReady(player_id) {
 	  animate: true,
 	  values: [ 0, 100 ],
 	  slide: function(event, ui) {
-		ui.values[ 0 ] ,ui.values[ 1 ] 
+	    var ll = ui.values[0] * container_div.find('div.loop').width() / 100 + 12;
+	    var lr = ui.values[1] * container_div.find('div.loop').width() / 100 + 12;
+		  container_div.find('span.loop-left').css({ left: ll });
+		  container_div.find('span.loop-right').css({ left: lr  });
+	  },
+	  change: function(event, ui) {
+	    var ll = ui.values[0] * container_div.find('div.loop').width() / 100 + 12;
+	    var lr = ui.values[1] * container_div.find('div.loop').width() / 100 + 12;
+		  container_div.find('span.loop-left').css({ left: ll });
+		  container_div.find('span.loop-right').css({ left: lr  });
 	  }
-	});
+	}).trigger('change');
 	
 	// video controls
 	container_div.find("button.play").click(function() {
