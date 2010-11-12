@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+		<title>YouTube DJ</title>
+		<!--Slider-->
+		<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+		
+		<style type="text/css">
+			#videoDiv1 { 
+				margin-right: 3px;
+				float: right;
+			}
+			
+			#videoDiv2 { 
+				margin-left: 3px;
+				float: left;
+			}
+			
+			#videoInfo {
+				margin-left: 3px;
+			}
+			
+			#slider1{ 
+				margin-right: 10px;
+				float: left;
+			}
+			
+			#slider2{ 
+				margin-left: 10px;
+				float: right;
+			}
+		</style>
+		
+
+		
+		<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+		<script type="text/javascript">
+			google.load("swfobject", "2.1");
+		</script>    
+		<script src="players_controls.js" type="text/javascript"></script>
+		
+		<script>
+			$(document).ready(function() {
+				$("#slider1").slider({
+					orientation: 'vertical',
+					animate: true,
+					value: 50,
+					slide: function(event, ui) {
+						setVideoVolume1(ui.value);
+					}				
+				});
+				
+				$("#slider2").slider({
+					orientation: 'vertical',
+					animate: true,
+					value: 50,
+					slide: function(event, ui) {
+						setVideoVolume2(ui.value);
+					}				
+				});
+			});
+		</script>
+	</head>
+
+	<body style="font-family: Arial;border: 0 none;">
+		<table>
+			<tr>
+				<td><div style="font-size:62.5%; height:295px" id="slider1"></div><div id="videoDiv1">Loading...</div></td>
+				<td><div id="videoDiv2">Loading...</div><div style="font-size:62.5%; height:295px" id="slider2"></div></td>
+			</tr><tr>
+			<td>
+				<div id="videoInfo">
+					<p>Player state: <span id="playerState">--</span></p>
+					<p>Current Time: <span id="videoCurrentTime">--:--</span> | Duration: <span id="videoDuration">--:--</span></p>
+					<p>Bytes Total: <span id="bytesTotal">--</span> | Start Bytes: <span id="startBytes">--</span> | Bytes Loaded: <span id="bytesLoaded">--</span></p>
+					<p>Controls: <a href="javascript:void(0);" onclick="playVideo1();">Play</a> | <a href="javascript:void(0);" onclick="pauseVideo1();">Pause</a> | <a href="javascript:void(0);" onclick="muteVideo1();">Mute</a> | <a href="javascript:void(0);" onclick="unMuteVideo1();">Unmute</a></p>
+				</div>
+			</td>
+			<td>
+				<div id="videoInfo2">
+					<p>Player state: <span id="playerState2">--</span></p>
+					<p>Current Time: <span id="videoCurrentTime2">--:--</span> | Duration: <span id="videoDuration2">--:--</span></p>
+					<p>Bytes Total: <span id="bytesTotal2">--</span> | Start Bytes: <span id="startBytes2">--</span> | Bytes Loaded: <span id="bytesLoaded2">--</span></p>
+					<p>Controls: <a href="javascript:void(0);" onclick="playVideo2();">Play</a> | <a href="javascript:void(0);" onclick="pauseVideo2();">Pause</a> | <a href="javascript:void(0);" onclick="muteVideo2();">Mute</a> | <a href="javascript:void(0);" onclick="unMuteVideo2();">Unmute</a></p>
+				</div>
+			</td></tr>
+		</table>
+	</body>
+</html>
+​
