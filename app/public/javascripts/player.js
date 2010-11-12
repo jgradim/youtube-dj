@@ -156,14 +156,14 @@ function onYouTubePlayerReady(player_id) {
 	  values: [ 0, 100 ],
 	  step: 0.1,
 	  slide: function(event, ui) {
-	    var ll = ui.values[0] * container_div.find('div.loop').width() / 100 + 12;
-	    var lr = ui.values[1] * container_div.find('div.loop').width() / 100 + 12;
+	    var ll = ui.values[0] * container_div.find('div.loop').width() / 100 - 10;
+	    var lr = ui.values[1] * container_div.find('div.loop').width() / 100 + 32;
 		  container_div.find('span.loop-left').css({ left: ll });
 		  container_div.find('span.loop-right').css({ left: lr  });
 	  },
 	  change: function(event, ui) {
-	    var ll = ui.values[0] * container_div.find('div.loop').width() / 100 + 12;
-	    var lr = ui.values[1] * container_div.find('div.loop').width() / 100 + 12;
+	    var ll = ui.values[0] * container_div.find('div.loop').width() / 100 - 10;
+	    var lr = ui.values[1] * container_div.find('div.loop').width() / 100 + 32;
 		  container_div.find('span.loop-left').css({ left: ll });
 		  container_div.find('span.loop-right').css({ left: lr  });
 	  }
