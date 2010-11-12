@@ -78,13 +78,13 @@ $(document).ready(function() {
   $("div#crossfade-control").slider({
     min: -50,
     max: 50,
-    value: 0,
+    value: -50,
     slide: function(ev, ui) {
       if(ui.value <= 0) {
         $("div#player-left div.volume").slider('value', ui.value*-2);
       }
       else {
-        $("div#player-right div.volume").slider('value', ui.value*-2);
+        $("div#player-right div.volume").slider('value', ui.value*2);
       }
     }
   })

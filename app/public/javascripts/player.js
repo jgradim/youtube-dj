@@ -47,7 +47,7 @@ function onYouTubePlayerReady(player_id) {
 	ytplayer.addEventListener("onStateChange", "onPlayerStateChange"+player_id);
 	//ytplayer.addEventListener("onError", "onPlayerError");
 	ytplayer.cueVideoById("jI5_wV0Pk_k");
-	
+	ytplayer.setVolume(100);
 	// bind player controls to buttons
 	var container_div = $("#"+player_id).parents("div.player");
 	
@@ -57,6 +57,9 @@ function onYouTubePlayerReady(player_id) {
 	  animate: true,
 	  value: 100,
 	  slide: function(event, ui) {
+		ytplayer.setVolume(ui.value);
+	  },
+	  change: function(event, ui) {
 		ytplayer.setVolume(ui.value);
 	  }
 	});
