@@ -44,10 +44,25 @@ function onYouTubePlayerReady(player_id) {
 	
 	// volume slider
 	container_div.find('div.volume').slider({
-	  orientation: 'vertical'
+	  orientation: 'vertical',
+	  animate: true,
+	  value: 100,
+	  slide: function(event, ui) {
+		ytplayer.setVolume(ui.value);
+	  }
 	});
 	
+	
+	
 	// loop
+	
+	container_div.find('div.loop').slider({
+	  animate: true,
+	  values: [ 0, 100 ],
+	  slide: function(event, ui) {
+		ui.values[ 0 ] ,ui.values[ 1 ] 
+	  }
+	});
 	
 	container_div.find("button.play").click(function() {
 	  var state = ytplayer.getPlayerState();	  

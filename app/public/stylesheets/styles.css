@@ -43,12 +43,12 @@ div.player {
 }
 
 div.volume, div.video { float: left; height: 295px; margin: 10px 0 0 10px; }
-div.volume { width: 30px; background: #00c; }
+div.volume { background: #00c; font-size: 65%; }
 div.video { width: 480px; background: #cc0; }
 
-div.loop { width: 480px; height: 30px; background: #0cc; }
+div.loop { width: 480px; font-size: 65%; background: #0cc; }
 
-div.status { clear:left; padding: 10px 0 0 50px; }
+div.status { clear:left; padding: 10px 0 0 30px; }
 
 div.player form {
   width: 480px;
