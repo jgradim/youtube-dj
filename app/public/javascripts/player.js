@@ -51,5 +51,9 @@ function onYouTubePlayerReady(player_id) {
   container_div.find("button.mute").click(function() {
     if(ytplayer.isMuted()) ytplayer.unMute();
     else ytplayer.mute();
-  })
+  });
+  
+  container_div.find("button.next").click(function() {
+    
+  });
 }
