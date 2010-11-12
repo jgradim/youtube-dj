@@ -51,8 +51,16 @@ function onYouTubePlayerReady(player_id) {
 				ytplayer.seekTo(time[0], true);
 			}
 		}
+		
+		// update progress bar
+		var progress = ytplayer.getCurrentTime() / ytplayer.getDuration() * 100;
+		container_div.find('div.progress span').css({width: progress+"%"});
+		
 	}, 250);
 	
+	// needs to be on global scope, but still have access to 'ytplayer'
+	// because youtube API only calls functions from strings and does not call
+	// anonymous functions passed directly
 	window.state_changed = function(state) {
 	
 	  // button state

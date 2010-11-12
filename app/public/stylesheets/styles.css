@@ -50,6 +50,9 @@ div.loop { width: 480px; font-size: 65%; background: #0cc; }
 
 div.status { clear:left; padding: 10px 0 0 30px; }
 
+div.player div.progress { height: 10px; }
+div.player div.progress span { display: block; height: 100%; width: 0; background: #fff; }
+
 div.player form {
   width: 480px;
   margin: 10px 0 10px 50px;

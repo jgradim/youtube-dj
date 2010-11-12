@@ -48,6 +48,7 @@ $(document).ready(function() {
           ol.append(li);
         });
         ol.parent().show();
+        $(this).find("input").val('');
       }
     });
     return false;
