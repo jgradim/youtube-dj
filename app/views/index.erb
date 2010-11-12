@@ -1,4 +1,9 @@
-<div class="player">
+<div id="record-controls">
+  <button id="record-set">Record Set</button>
+  <button id="play-set">Play Set</button>
+</div>
+
+<div class="player" id="player-left">
 
   <div class="volume"></div>
   
@@ -7,6 +12,7 @@
   </div>
   
   <div class="controls" data-player-id="1">
+    <div class="progress"></div>
     <div class="loop"></div>
     <button class="play" data-playing="false">Play/Pause</button>
     <button class="mute" data-muted="false">Mute/Unmute</button>
@@ -15,8 +21,16 @@
     <label>Loop</label>
   </div>
   
+  <form action="" method="get">
+    <input type="text" name="q" />
+  </form>
+  
   <ol class="queue">
   </ol>
+  
+  <div class="search-results">
+    <ol></ol>
+  </div>
   
 </div>
 
