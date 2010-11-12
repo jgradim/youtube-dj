@@ -1,12 +1,11 @@
 String.prototype.yt_id = function() {
   return this.match(/\/videos\/(.*)$/)[1];
 }
-var r;
 $(document).ready(function() {
 
   // create video players
-  create_player("#player-left", 1);
-  //create_player("#player-right", 2);
+  create_player("#player-left",  1);
+  create_player("#player-right", 2);
 
   // mustache templates
   var searched_video, queued_video;
@@ -37,8 +36,6 @@ $(document).ready(function() {
       cache: false,
       dataType:'jsonp',
       success: function(results) {
-        console.log(results);
-        r = results;
         $.each(results.feed.entry, function(i, result){
           
           var li = Mustache.to_html(searched_video, {
@@ -51,6 +48,7 @@ $(document).ready(function() {
           ol.append(li);
         });
         ol.parent().show();
+        $(this).find("input").val('');
       }
     });
     return false;
@@ -72,4 +70,31 @@ $(document).ready(function() {
     $(this).parent().remove();
     return false;
   });
+  
+  // allow sorting of the queued videos
+  $('ol.queue').sortable();
+  
+  // record / play buttons status
+  $('button#record-set').click(function() { $(this).toggleClass('recording'); return false; });
+  $('button#play-set').click(function() { $(this).toggleClass('playing'); return false; });
+  
+  // crossfade functionality
+  $("div#crossfade-control").slider({
+    min: -50,
+    max: 50,
+    value: -50,
+    slide: function(ev, ui) {
+		if(ui.value == 0){
+			$("div#player-left div.volume").slider('value', 50);
+			$("div#player-right div.volume").slider('value', 50);
+		}else if(ui.value < 0){
+			$("div#player-left div.volume").slider('value', 50+(ui.value*-1));
+			$("div#player-right div.volume").slider('value', 50+ui.value*-1);
+		}else{
+			$("div#player-left div.volume").slider('value', 50+(ui.value*-1));
+			$("div#player-right div.volume").slider('value', 50+ui.value);
+		}
+    }
+  })
+  
 });
