@@ -80,12 +80,16 @@ $(document).ready(function() {
     max: 50,
     value: -50,
     slide: function(ev, ui) {
-      if(ui.value <= 0) {
-        $("div#player-left div.volume").slider('value', ui.value*-2);
-      }
-      else {
-        $("div#player-right div.volume").slider('value', ui.value*2);
-      }
+		if(ui.value == 0){
+			$("div#player-left div.volume").slider('value', 50);
+			$("div#player-right div.volume").slider('value', 50);
+		}else if(ui.value < 0){
+			$("div#player-left div.volume").slider('value', 50+(ui.value*-1));
+			$("div#player-right div.volume").slider('value', 50+ui.value*-1);
+		}else{
+			$("div#player-left div.volume").slider('value', 50+(ui.value*-1));
+			$("div#player-right div.volume").slider('value', 50+ui.value);
+		}
     }
   })
   
