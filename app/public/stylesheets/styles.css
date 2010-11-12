@@ -26,7 +26,7 @@ div#record-controls button {
 
 /* PLAYERS CONTAINER
 ------------------------------------------------------------------------------*/
-div.player { float: left; }
+div.player { float: left; position: relative; }
 
 div.player {
   width: 45%;
@@ -38,9 +38,28 @@ div.volume, div.video { float: left; height: 295px; margin: 10px 0 0 10px; }
 div.volume { width: 30px; background: #00c; }
 div.video { width: 480px; background: #cc0; }
 
-div.controls { clear:left; height: 500px; padding: 10px 0 0 50px; }
+div.controls { clear:left; padding: 10px 0 0 50px; }
 
 div.loop { width: 480px; height: 30px; background: #0cc; }
+
+div.player form {
+  width: 480px;
+  margin: 10px 0 10px 50px;
+  display: block;
+  clear: left; 
+}
+div.player form input {
+  width: 460px;
+  padding: 10px;
+  border: 1px solid #000;
+}
+
+/* SEARCH RESULTS
+------------------------------------------------------------------------------*/
+div.search-results { position: absolute; display: none; }
+div.search-results ol li:hover {
+  background: #ddd;
+}
 
 /* CROSSFADE
 ------------------------------------------------------------------------------*/
