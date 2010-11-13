@@ -87,6 +87,12 @@ div.progress p {
 }
 
 div.loop { width: 480px; font-size: 65%; }
+div.ui-slider-range {
+  background: #000;
+  border: 1px solid #373737;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 5px #444;
+}
 
 div.loop a.ui-slider-handle{
 	height: 51px; 
