@@ -43,9 +43,6 @@ function onYouTubePlayerReady(player_id) {
 
   // load video, set listeners
 	var ytplayer = document.getElementById(player_id);
-	ytplayer.loadVideoById("jI5_wV0Pk_k");
-	ytplayer.pauseVideo();
-	
 	
 	// bind player controls to buttons
 	var container_div = $("#"+player_id).parents("div.player");
@@ -113,12 +110,16 @@ function onYouTubePlayerReady(player_id) {
 	var adjust_left;
 	var adjust_right;
 	if(player_id == "ytplayer1") {
+		ytplayer.loadVideoById("jI5_wV0Pk_k");
+		ytplayer.pauseVideo();
 		ytplayer.addEventListener("onStateChange", "state_changed_left");
 		ytplayer.setVolume(100);
 		adjust_left = 17;
 		adjust_right = 25;
 	}
 	else if(player_id == "ytplayer2") {
+		ytplayer.loadVideoById("bf5x3LtWzVA");
+		ytplayer.pauseVideo();
 		ytplayer.addEventListener("onStateChange", "state_changed_right");
 		ytplayer.setVolume(0);
 		adjust_left = 37;

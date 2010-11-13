@@ -92,7 +92,8 @@ div.loop a.ui-slider-handle{
 	height: 51px; 
 	width: 55px; 
 	margin-left: -10px;
-	visibility: hidden;
+	border: none;
+	background: transparent;
 }
 
 div.loop a.ui-slider-handle:first-child{
