@@ -1,9 +1,44 @@
 var events = new Array();
 var recording_start;
+var playset_start;
+
+// demo set
+var demoset = [
+    {   "timestamp": 1,
+        "action": "addToQueue",
+        "params": {
+            "player_id": 1,
+            "title": "Nataly Dawn Pomplamoose Music",
+            "video_id": "6VLXgsDQNr8"
+        }
+    },
+    {   "timestamp": 2,
+        "action": "addToQueue",
+        "params": {
+            "player_id": 2,
+            "title": "The Prodigy - Firestarter",
+            "video_id": "wmin5WkOuPw"
+        }
+    },
+    {   "timestamp": 3,
+        "action": "nextVideo",
+        "params": {
+            "player_id": "player-left",
+        }
+    },
+    {   "timestamp": 4,
+        "action": "nextVideo",
+        "params": {
+            "player_id": "player-right",
+        }
+    }
+];
 
 String.prototype.yt_id = function() {
   return this.match(/\/videos\/(.*)$/)[1];
 }
+
+var searched_video, queued_video;
 $(document).ready(function() {
 	
 
@@ -12,7 +47,6 @@ $(document).ready(function() {
   create_player("#player-right", 2);
 
   // mustache templates
-  var searched_video, queued_video;
   $.get('/templates/searched_video.html', function(data){
     searched_video = data;
   });
@@ -106,7 +140,10 @@ $(document).ready(function() {
   });
   $('button#play-set').click(function() {
     $(this).toggleClass('playing');
-
+    if($(this).hasClass('playing')) {
+        playset_start = new Date().getTime();
+        setInterval("playSet();", 1000);
+    }
   });
   
   // crossfade functionality
@@ -177,5 +214,90 @@ function addEvent(action, ev)
             "params": ev
         };
         events.push(myevent);
+    }
+}
+
+function playSet()
+{
+    // play a given set
+/*
+    var i=0;
+    for(i=0; i < demoset.length; i++) {
+      var ev = demoset[i];
+      switch(ev.action) {
+        case "addToQueue":
+            //TODO refactor
+            var li = Mustache.to_html(queued_video, {
+              video_id: ev.params.video_id,
+              title: ev.params.title
+            })
+            plyr = (ev.params.player_id == 1) ? "player-left" : "player-right";
+            $("div#"+plyr+" ol.queue").append(li);
+            break;
+        case "nextVideo":
+            var li = $("div#"+ev.params.player_id+" ol.queue li:first");
+            var playerid = (ev.params.player_id == "player-left") ? "ytplayer1" : "ytplayer2";
+            var ytplayer = document.getElementById(playerid);
+
+            ytplayer.loadVideoById(li.data('video-id'));
+            li.remove();
+            break;
+        default:
+            break;
+      } 
+    }
+*/
+    var ev = demoset[0];
+    var playing_set_time = new Date().getTime() - playset_start; 
+    if(ev.timestamp <= playing_set_time) {
+      demoset.shift();
+      switch(ev.action) {
+        case "addToQueue":
+            //TODO refactor
+            var li = Mustache.to_html(queued_video, {
+              video_id: ev.params.video_id,
+              title: ev.params.title
+            })
+            plyr = (ev.params.player_id == 1) ? "player-left" : "player-right";
+            $("div#"+plyr+" ol.queue").append(li);
+            break;
+        case "nextVideo":
+            var li = $("div#"+ev.params.player_id+" ol.queue li:first");
+            var playerid = (ev.params.player_id == "player-left") ? "ytplayer1" : "ytplayer2";
+            var ytplayer = document.getElementById(playerid);
+
+            ytplayer.loadVideoById(li.data('video-id'));
+            li.remove();
+            break;
+        case "crossfade":
+		    var playerLeft = document.getElementById('ytplayer1');
+		    var playerRight = document.getElementById('ytplayer2');
+		    if(ev.params.value == 0){
+			  $("div#player-left div.volume").slider('value', 50);
+		  	  $("div#player-right div.volume").slider('value', 50);
+		    }
+		    else if(ev.params.value < 0){
+		  	  $("div#player-left div.volume").slider('value', 50+(ev.params.value*-1));
+		  	  $("div#player-right div.volume").slider('value', 50+ev.params.value);
+		    }
+		    else{
+		  	  $("div#player-left div.volume").slider('value', 50+(ev.params.value*-1));
+		  	  $("div#player-right div.volume").slider('value', 50+ev.params.value);
+		    }
+		
+            var R = 255;
+            var G = parseInt(255*((100-playerLeft.getVolume())/100));
+            var B = parseInt(255*((100-playerLeft.getVolume())/100));
+            var rgb = "rgb(" + R + "," + G + "," + B + ")";
+            $("div#vLeft").css("background-color",rgb);
+            var R = 255;
+            var G = parseInt(255*((100-playerRight.getVolume())/100));
+            var B = parseInt(255*((100-playerRight.getVolume())/100));
+            var rgb = "rgb(" + R + "," + G + "," + B + ")";
+            $("div#vRight").css("background-color",rgb);
+            break;
+        default:
+            break;
+      } 
     }
 }
