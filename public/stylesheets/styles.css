@@ -50,24 +50,38 @@ button#play-set.playing { background: #333 url(../images/play_pause.png) no-repe
 
 /* PLAYERS CONTAINER
 ------------------------------------------------------------------------------*/
-div.player { float: left; position: relative; }
-
 div.player {
+  position: relative;
+  float: left;
   width: 40%;
   height: 700px;
 }
 
 div.volume, div.video { float: left; height: 295px; margin: 10px 0 0 10px; }
 div.volume { background: #00c; font-size: 65%; }
-div.video { width: 480px; background: #cc0; }
+div.video { width: 480px; }
 
 div.loop { width: 480px; font-size: 65%; }
 
-div.status { clear:left; padding: 10px 10px 10px 30px; }
-div#player-right div.status { padding: 10px; }
+div.status { clear:left; padding: 0 10px 10px 30px; position: relative; }
+div#player-right div.status { padding: 0 10px 10px 10px; }
 
-div.player div.progress { width: 480px; height: 10px; background: #000; margin-bottom: 10px;}
+div.player div.progress { width: 480px; height: 20px; background: #000; margin: 10px 0; }
 div.player div.progress span { display: block; height: 100%; width: 0; background: #fff; }
+div.progress p {
+  display: block;
+  width: 480px;
+  height: 20px;
+  position: absolute;
+  z-index: 9999;
+  top: 0;
+  font-size: 0.7em;
+  line-height: 22px;
+  color: #999;
+  text-align: center;
+  /*text-shadow: 1px 1px 1px #333;*/
+}
+
 span.loop-left, span.loop-right {
   position: absolute;
   display: block;

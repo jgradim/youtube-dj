@@ -65,6 +65,7 @@ function onYouTubePlayerReady(player_id) {
 		// update progress bar
 		var progress = ytplayer.getCurrentTime() / ytplayer.getDuration() * 100;
 		container_div.find('div.progress span').css({width: progress+"%"});
+		container_div.find('div.progress p').text(timestring(ytplayer.getCurrentTime()));
 		
 		// update loop labels
 		container_div.find('span.loop-left').text(timestring(time[0]));
