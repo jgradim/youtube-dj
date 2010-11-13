@@ -23,8 +23,9 @@ div#record-controls button {
   height: 70px;
   margin: 0 20px;
   text-indent: -99999px;
-  border: 1px solid #ddd;
-  border-radius: 3px;
+  border: 1px solid #222;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 10px #444;
 }
 button#record-set { background: #333 url(../images/record.png) no-repeat 0 center; }
 button#record-set:hover { background: #333 url(../images/record.png) no-repeat -70px center; }
@@ -89,11 +90,12 @@ div.controls button, div.controls label {
   width: 100px;
   height: 70px;
   margin-right: 10px;
-  border: 2px solid #292929;
-  border-radius: 3px;
+  border: 1px solid #222;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 10px #444;
   text-indent: -99999px;
 }
-div.controls label { width: 95px; height: 65px; }
+div.controls label { width: 99px; height: 69px; }
 
 button.play { background: #333 url(../images/play_pause.png) no-repeat 0 center; margin-left: 25px; }
 button.play:hover { background: #333 url(../images/play_pause.png) no-repeat -100px center; }
