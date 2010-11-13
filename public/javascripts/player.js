@@ -219,9 +219,12 @@ function onYouTubePlayerReady(player_id) {
   });
   
   container_div.find("button.next").click(function() {
+    console.log(container_div.find("div.loop"));
     var li = container_div.find('ol.queue li:first');
     ytplayer.loadVideoById(li.data('video-id'));
     li.remove();
+    container_div.find("div.loop").slider('values', 0, [0]);
+    container_div.find("div.loop").slider('values', 1, [100]);
 
     // register event
     var ev = {
