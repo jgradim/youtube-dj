@@ -2,6 +2,7 @@
 ------------------------------------------------------------------------------*/
 body {
   font: normal normal 16px/1.5em Arial,Helvetica,sans-serif;
+  background: url(../images/body-bg.png);
 }
 
 /* WRAPPER
@@ -25,30 +26,30 @@ div#record-controls button {
   border: 1px solid #ddd;
   border-radius: 3px;
 }
-button#record-set { background: url(../images/record.png) no-repeat 0 center; }
-button#record-set:hover { background: url(../images/record.png) no-repeat -70px center; }
-button#record-set.recording { background: url(../images/record.png) no-repeat -140px center; }
-button#play-set { background: url(../images/play_pause.png) no-repeat -15px center; }
-button#play-set:hover { background: url(../images/play_pause.png) no-repeat -115px center; }
-button#play-set.playing { background: url(../images/play_pause.png) no-repeat -215px center; }
+button#record-set { background: #333 url(../images/record.png) no-repeat 0 center; }
+button#record-set:hover { background: #333 url(../images/record.png) no-repeat -70px center; }
+button#record-set.recording { background: #333 url(../images/record.png) no-repeat -140px center; }
+button#play-set { background: #333 url(../images/play_pause.png) no-repeat -15px center; }
+button#play-set:hover { background: #333 url(../images/play_pause.png) no-repeat -115px center; }
+button#play-set.playing { background: #333 url(../images/play_pause.png) no-repeat -215px center; }
 
 /* PLAYERS CONTAINER
 ------------------------------------------------------------------------------*/
 div.player { float: left; position: relative; }
 
 div.player {
-  width: 45%;
+  width: 40%;
   height: 700px;
-  background: #c00;
 }
 
 div.volume, div.video { float: left; height: 295px; margin: 10px 0 0 10px; }
 div.volume { background: #00c; font-size: 65%; }
 div.video { width: 480px; background: #cc0; }
 
-div.loop { width: 480px; font-size: 65%; background: #0cc; }
+div.loop { width: 480px; font-size: 65%; }
 
-div.status { clear:left; padding: 0 0 0 30px; }
+div.status { clear:left; padding: 10px 10px 10px 30px; }
+div#player-right div.status { padding: 10px; }
 
 div.player div.progress { width: 480px; height: 10px; background: #000; margin-bottom: 10px;}
 div.player div.progress span { display: block; height: 100%; width: 0; background: #fff; }
@@ -57,7 +58,7 @@ span.loop-left, span.loop-right {
   display: block;
   width: 55px;
   height: 40px;
-  top: 345px;
+  top: 355px;
   color: #fff;
   line-height: 52px;
   font-size: 0.7em;
@@ -68,12 +69,13 @@ span.loop-right { background: url(../images/label_right.png) no-repeat; }
 
 div.player form {
   width: 480px;
-  margin: 30px 0 10px 50px;
+  margin: 30px 0 10px 30px;
   display: block;
   clear: left;
 }
+div#player-right form { margin: 30px 0 10px 10px; }
 div.player form input {
-  width: 460px;
+  width: 458px;
   padding: 10px;
   border: 1px solid #000;
 }
@@ -93,7 +95,7 @@ div.controls button, div.controls label {
 }
 div.controls label { width: 95px; height: 65px; }
 
-button.play { background: #333 url(../images/play_pause.png) no-repeat 0 center; }
+button.play { background: #333 url(../images/play_pause.png) no-repeat 0 center; margin-left: 25px; }
 button.play:hover { background: #333 url(../images/play_pause.png) no-repeat -100px center; }
 button.play.playing { background: #333 url(../images/play_pause.png) no-repeat -200px center; }
 
@@ -121,7 +123,7 @@ div.search-results ol li:hover {
 ------------------------------------------------------------------------------*/
 div#crossfade { float: left; }
 div#crossfade {
-  width: 10%;
+  width: 17%;
   height: 500px;
-  background: #0c0;
+  padding: 150px 1% 0 2%;
 }

@@ -107,12 +107,21 @@ function onYouTubePlayerReady(player_id) {
       li.remove();
 		}
 	}
-	if(player_id == "ytplayer1"){
+	
+	//
+	var adjust_left;
+	var adjust_right;
+	if(player_id == "ytplayer1") {
 		ytplayer.addEventListener("onStateChange", "state_changed_left");
 		ytplayer.setVolume(100);
-	}else if(player_id == "ytplayer2"){
+		adjust_left = 17;
+		adjust_right = 25;
+	}
+	else if(player_id == "ytplayer2") {
 		ytplayer.addEventListener("onStateChange", "state_changed_right");
 		ytplayer.setVolume(0);
+		adjust_left = 37;
+		adjust_right = 7;
 	}
 	
 	// progess / seek bar
@@ -167,14 +176,14 @@ function onYouTubePlayerReady(player_id) {
 	  values: [ 0, 100 ],
 	  step: 0.1,
 	  slide: function(event, ui) {
-	    var ll = ui.values[0] * container_div.find('div.loop').width() / 100 - 17;
-	    var lr = ui.values[1] * container_div.find('div.loop').width() / 100 + 25;
+	    var ll = ui.values[0] * container_div.find('div.loop').width() / 100 - adjust_left;
+	    var lr = ui.values[1] * container_div.find('div.loop').width() / 100 + adjust_right;
 		  container_div.find('span.loop-left').css({ left: ll });
 		  container_div.find('span.loop-right').css({ left: lr  });
 	  },
 	  change: function(event, ui) {
-	    var ll = ui.values[0] * container_div.find('div.loop').width() / 100 - 17;
-	    var lr = ui.values[1] * container_div.find('div.loop').width() / 100 + 25;
+	    var ll = ui.values[0] * container_div.find('div.loop').width() / 100 - adjust_left;
+	    var lr = ui.values[1] * container_div.find('div.loop').width() / 100 + adjust_right;
 		  container_div.find('span.loop-left').css({ left: ll });
 		  container_div.find('span.loop-right').css({ left: lr  });
 	  }
