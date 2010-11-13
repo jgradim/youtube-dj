@@ -228,7 +228,13 @@ ol.queue li:last-child { margin-bottom: 0; }
 ol.queue li:hover { cursor: move; }
 ol.queue li a {
   position: absolute;
-  right: 10px;
+  display: block;
+  width: 30px;
+  height: 30px;
+  right: 12px;
+  top: 4px;
+  text-indent: -99999px;
+  background: url(../images/close.png) no-repeat;
 }
 
 
