@@ -62,7 +62,7 @@ div.ui-slider { border: 1px solid #333; }
 div.volume, div.video { float: left; height: 295px; margin: 10px 0 0 10px; }
 div.video { width: 480px; }
 div.volume { font-size: 65%; }
-div.volume a.ui-slider-handle{ margin-left: -3px; height: 0.5em; width: 2em;}
+div.volume a.ui-slider-handle{ margin-left: -4px; height: 0.5em; width: 2em;}
 
 div#vLeft{ background-color: rgb(255,0,0); }
 div.loop { width: 480px; font-size: 65%; }
