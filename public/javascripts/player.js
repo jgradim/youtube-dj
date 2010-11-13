@@ -137,7 +137,7 @@ function onYouTubePlayerReady(player_id) {
 	// volume slider
 	container_div.find('div.volume').slider({
 	  orientation: 'vertical',
-	  animate: true,
+	  //animate: true,
 	  value: ytplayer.getVolume(),
 	  slide: function(event, ui) {
 		  ytplayer.setVolume(ui.value);
@@ -189,7 +189,7 @@ function onYouTubePlayerReady(player_id) {
 	
 	// loop
 	container_div.find('div.loop').slider({
-	  animate: true,
+	  //animate: true,
 	  range: true,
 	  step: 0.1,
 	  values: [ 0, 100 ],

@@ -89,7 +89,7 @@ $(document).ready(function() {
     min: -50,
     max: 50,
     value: -50,
-    animate: true,
+    //animate: true,
     slide: function(ev, ui) {
 		  var playerLeft = document.getElementById('ytplayer1');
 		  var playerRight = document.getElementById('ytplayer2');
@@ -121,6 +121,11 @@ $(document).ready(function() {
   
   // keyboard control
   $(window).keypress(function(ev){
+  
+    var vc = $("div#crossfade-control").slider('value');
+    var vl = $("div#player-left div.volume").slider('value');
+    var vr = $("div#player-right div.volume").slider('value');
+    
     switch(ev.which) {
       case 113: $("div#player-left button.play").click(); break; // Q
       case 119: $("div#player-left button.mute").click(); break; // W
@@ -131,6 +136,23 @@ $(document).ready(function() {
       case 105: $("div#player-right button.mute").click(); break; // I
       case 111: $("div#player-right button.next").click(); break; // O
       case 112: $("div#player-right input.loop").change(); break; // P
+      
+      case 116: $("button#record-set").click(); break;            // T
+      case 121: $("button#play-set").click(); break;              // Y
+      
+      case 103: {
+        $("div#crossfade-control").slider('value', vc - 5);
+        $("div#player-left div.volume").slider('value', vl + 5);
+        $("div#player-right div.volume").slider('value', vr - 5);
+      } break;                                                    // G
+      case 104: {
+        $("div#crossfade-control").slider('value', vc + 5);
+        $("div#player-left div.volume").slider('value', vl - 5);
+        $("div#player-right div.volume").slider('value', vr + 5);
+      } break;                                                    // H
+      
+      case  97: $("div#player-left div.volume").slider('value', vl + 5); break; // A
+      case 122: $("div#player-left div.volume").slider('value', vl - 5); break; // Z
     }
   })
   
