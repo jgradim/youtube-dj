@@ -140,10 +140,27 @@ function onYouTubePlayerReady(player_id) {
 	  value: ytplayer.getVolume(),
 	  slide: function(event, ui) {
 		  ytplayer.setVolume(ui.value);
+		  if(player_id == "ytplayer1"){
+			  var R = 255;
+			  var G = parseInt(255*((100-ytplayer.getVolume())/100));
+			  var B = parseInt(255*((100-ytplayer.getVolume())/100));
+			  var rgb = "rgb(" + R + "," + G + "," + B + ")";
+			  $("div#vLeft").css("background-color",rgb);
+		  }else  if(player_id == "ytplayer2"){
+			  var R = 255;
+			  var G = parseInt(255*((100-ytplayer.getVolume())/100));
+			  var B = parseInt(255*((100-ytplayer.getVolume())/100));
+			  var rgb = "rgb(" + R + "," + G + "," + B + ")";
+			  $("div#vRight").css("background-color",rgb);
+		  }
 	  },
 	  change: function(event, ui) {
 		  ytplayer.setVolume(ui.value);
+	  },	  
+	  stop: function(event, ui) {
+		  ytplayer.setVolume(ui.value);
 	  }
+	  
 	});
 	
 	// video controls
