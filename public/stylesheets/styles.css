@@ -18,15 +18,29 @@ div#record-controls {
   padding: 20px;
   text-align: center;
 }
+div#record-controls div {
+  width: 145px;
+  height: 70px;
+  margin: 0 auto;
+  padding: 5px;
+  background: #000;
+  border: 1px solid #373737;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 5px #444;
+}
+
 div#record-controls button {
   width: 70px;
   height: 70px;
-  margin: 0 20px;
-  text-indent: -99999px;
+  display: block;
+  float: left;
+  margin: 0 5px 0 0;
   border: 1px solid #222;
-  border-radius: 5px;
-  -webkit-box-shadow: 0 0 10px #444;
+  border-radius: 3px;
+  text-indent: -99999px;
 }
+div#record-controls button:last-child { margin: 0; }
+
 button#record-set { background: #333 url(../images/record.png) no-repeat 0 center; }
 button#record-set:hover { background: #333 url(../images/record.png) no-repeat -70px center; }
 button#record-set.recording { background: #333 url(../images/record.png) no-repeat -140px center; }
@@ -83,21 +97,31 @@ div.player form input {
 
 /* VIDEO CONTROLS
 ------------------------------------------------------------------------------*/
-div.controls { padding: 60px 0; }
+span.clear { clear: left; }
+div.controls {
+  width: 416px;
+  height: 70px;
+  margin: 50px 0 0 25px;
+  padding: 5px;
+  background: #000;
+  border: 1px solid #373737;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 5px #444;
+}
 div.controls button, div.controls label {
   display: block;
   float: left;
   width: 100px;
   height: 70px;
-  margin-right: 10px;
+  margin-right: 5px;
   border: 1px solid #222;
-  border-radius: 5px;
-  -webkit-box-shadow: 0 0 10px #444;
+  border-radius: 3px;
+  /*-webkit-box-shadow: 0 0 10px #444;*/
   text-indent: -99999px;
 }
-div.controls label { width: 99px; height: 69px; }
+div.controls label { width: 99px; height: 69px; margin-right: 0; }
 
-button.play { background: #333 url(../images/play_pause.png) no-repeat 0 center; margin-left: 25px; }
+button.play { background: #333 url(../images/play_pause.png) no-repeat 0 center; }
 button.play:hover { background: #333 url(../images/play_pause.png) no-repeat -100px center; }
 button.play.playing { background: #333 url(../images/play_pause.png) no-repeat -200px center; }
 
