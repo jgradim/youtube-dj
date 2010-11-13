@@ -87,17 +87,27 @@ div.progress p {
 }
 
 div.loop { width: 480px; font-size: 65%; }
+div.ui-slider-range {
+  background: #000;
+  border: 1px solid #373737;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 5px #444;
+}
 
 div.loop a.ui-slider-handle{
 	height: 51px; 
-	width: 55px; 
+	width: 95px; 
 	margin-left: -10px;
 	border: none;
 	background: transparent;
+	outline: none;
+	z-index: 10;
+	margin-left: -50px;
+	float: left;
 }
 
-div.loop a.ui-slider-handle:first-child{
-	margin-left: -50px;
+span.loop-left a:first-child{
+	background: red;
 }
 
 span.loop-left, span.loop-right {
@@ -111,6 +121,7 @@ span.loop-left, span.loop-right {
   font-size: 0.7em;
   text-align: center;
   margin-top: -16px;
+  z-index: 5;
 }
 
 span.loop-left {  margin-left: -2px;background: url(../images/label_left2.png) no-repeat; }

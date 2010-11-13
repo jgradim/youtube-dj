@@ -144,7 +144,7 @@ function onYouTubePlayerReady(player_id) {
 	// volume slider
 	container_div.find('div.volume').slider({
 	  orientation: 'vertical',
-	  animate: true,
+	  //animate: true,
 	  value: ytplayer.getVolume(),
 	  slide: function(event, ui) {
 		  ytplayer.setVolume(ui.value);
@@ -219,9 +219,12 @@ function onYouTubePlayerReady(player_id) {
   });
   
   container_div.find("button.next").click(function() {
+    console.log(container_div.find("div.loop"));
     var li = container_div.find('ol.queue li:first');
     ytplayer.loadVideoById(li.data('video-id'));
     li.remove();
+    container_div.find("div.loop").slider('values', 0, [0]);
+    container_div.find("div.loop").slider('values', 1, [100]);
 
     // register event
     var ev = {
@@ -242,7 +245,7 @@ function onYouTubePlayerReady(player_id) {
 	
 	// loop
 	container_div.find('div.loop').slider({
-	  animate: true,
+	  //animate: true,
 	  range: true,
 	  step: 0.1,
 	  values: [ 0, 100 ],
