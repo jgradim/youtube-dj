@@ -1,3 +1,6 @@
+var events = new Array();
+var recording_start;
+
 String.prototype.yt_id = function() {
   return this.match(/\/videos\/(.*)$/)[1];
 }
@@ -68,11 +71,24 @@ $(document).ready(function() {
     })
     $(this).parents('div.search-results').siblings('ol.queue').append(li);
     $(this).parents('div.search-results').hide();
+    // register event
+    var ev = {
+        player_id: $(this).parents('div.search-results').siblings('div.status').data('player-id'),
+        video_id: $(this).data('video-id'),
+        title: $(this).find('span').text()
+    };
+    addEvent("addToQueue",ev);
     return false;
   });
   
   // allow removal of queued videos
   $("ol.queue li a.close").live('click', function(){
+    // register event
+    var ev = {
+        "queued_video_id": $(this).parent().data('video-id')
+    }
+    addEvent("removeFromQueue",ev);
+
     $(this).parent().remove();
     return false;
   });
@@ -81,8 +97,17 @@ $(document).ready(function() {
   $('ol.queue').sortable();
   
   // record / play buttons status
-  $('button#record-set').click(function() { $(this).toggleClass('recording'); return false; });
-  $('button#play-set').click(function() { $(this).toggleClass('playing'); return false; });
+  $('button#record-set').click(function() {
+    $(this).toggleClass('recording');
+    if($(this).hasClass('recording')) {
+        recording_start = new Date().getTime();
+    }
+    return false;
+  });
+  $('button#play-set').click(function() {
+    $(this).toggleClass('playing');
+
+  });
   
   // crossfade functionality
   $("div#crossfade-control").slider({
@@ -116,6 +141,12 @@ $(document).ready(function() {
 	    var B = parseInt(255*((100-playerRight.getVolume())/100));
 	    var rgb = "rgb(" + R + "," + G + "," + B + ")";
 	    $("div#vRight").css("background-color",rgb);
+
+        // register event
+        var ev = {
+          "value": ui.value
+        };
+        addEvent("crossfade", ev);
     }
   });
   
@@ -135,3 +166,16 @@ $(document).ready(function() {
   })
   
 });
+
+function addEvent(action, ev)
+{
+    if($('button#record-set').hasClass('recording')) {
+        var timestamp = new Date().getTime() - recording_start;
+        var myevent = {
+            "timestamp": timestamp,
+            "action": action,
+            "params": ev
+        };
+        events.push(myevent);
+    }
+}

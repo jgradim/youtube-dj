@@ -132,6 +132,13 @@ function onYouTubePlayerReady(player_id) {
 	  var pos = ev.clientX - $(this).offset().left;
 	  var percent = pos / width;
 	  ytplayer.seekTo(ytplayer.getDuration()*percent, true);
+
+      // register event
+      var ev = {
+        "player_id": container_div.attr('id'),
+        "percent": ytplayer.getDuration()*percent
+      };
+      addEvent("seek", ev);
 	});
 	
 	// volume slider
@@ -154,12 +161,33 @@ function onYouTubePlayerReady(player_id) {
 			  var rgb = "rgb(" + R + "," + G + "," + B + ")";
 			  $("div#vRight").css("background-color",rgb);
 		  }
+
+          // register event
+          var ev = {
+            "player_id": container_div.attr('id'),
+            "volume": ui.value
+          };
+          addEvent("updateVolume", ev);
 	  },
 	  change: function(event, ui) {
 		  ytplayer.setVolume(ui.value);
+
+          // register event
+          var ev = {
+            "player_id": container_div.attr('id'),
+            "volume": ui.value
+          };
+          addEvent("updateVolume", ev);
 	  },	  
 	  stop: function(event, ui) {
 		  ytplayer.setVolume(ui.value);
+
+          // register event
+          var ev = {
+            "player_id": container_div.attr('id'),
+            "volume": ui.value
+          };
+          addEvent("updateVolume", ev);
 	  }
 	  
 	});
@@ -169,22 +197,47 @@ function onYouTubePlayerReady(player_id) {
 	  var state = ytplayer.getPlayerState();	  
 	  if(state == PAUSED || state == QUEUED) ytplayer.playVideo();
 	  else if(state == PLAYING) ytplayer.pauseVideo();
+
+      // register event
+      var ev = {
+        "player_id": container_div.attr('id')
+      };
+      addEvent("togglePlaying", ev);
+      return false;
   });
   
   container_div.find("button.mute").click(function() {
     if(ytplayer.isMuted()) ytplayer.unMute();
     else ytplayer.mute();
     $(this).toggleClass('muted');
+
+    // register event
+    var ev = {
+      "player_id": container_div.attr('id')
+    };
+    addEvent("toggleMute", ev);
   });
   
   container_div.find("button.next").click(function() {
     var li = container_div.find('ol.queue li:first');
     ytplayer.loadVideoById(li.data('video-id'));
     li.remove();
+
+    // register event
+    var ev = {
+      "player_id": container_div.attr('id')
+    };
+    addEvent("nextVideo", ev);
   });
   
   container_div.find('input[type=checkbox]').change(function(){
     container_div.find('label').toggleClass('looping');
+
+    // register event
+    var ev = {
+      "player_id": container_div.attr('id')
+    };
+    addEvent("toggleLoop", ev);
   });
 	
 	// loop
@@ -199,12 +252,28 @@ function onYouTubePlayerReady(player_id) {
 	    var lr = ui.values[1] * container_div.find('div.loop').width() / 100 + adjust_right;
 		  container_div.find('span.loop-left').css({ left: ll });
 		  container_div.find('span.loop-right').css({ left: lr  });
+
+          // register event
+          var ev = {
+            "player_id": container_div.attr('id'),
+            "ll": ll,
+            "lr": lr
+          };
+          addEvent("updateLoop", ev);
 	  },
 	  change: function(event, ui) {
 	    var ll = ui.values[0] * container_div.find('div.loop').width() / 100 - adjust_left;
 	    var lr = ui.values[1] * container_div.find('div.loop').width() / 100 + adjust_right;
 		  container_div.find('span.loop-left').css({ left: ll });
 		  container_div.find('span.loop-right').css({ left: lr  });
+
+          // register event
+          var ev = {
+            "player_id": container_div.attr('id'),
+            "ll": ll,
+            "lr": lr
+          };
+          addEvent("updateLoop", ev);
 	  }
 	}).slider('values', 0, [0]).slider('values', 0, [100]);
 	
