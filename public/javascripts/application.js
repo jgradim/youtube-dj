@@ -87,7 +87,10 @@ $(document).ready(function() {
     min: -50,
     max: 50,
     value: -50,
+    animate: true,
     slide: function(ev, ui) {
+		var playerLeft = document.getElementById('ytplayer1');
+		var playerRight = document.getElementById('ytplayer2');
 		if(ui.value == 0){
 			$("div#player-left div.volume").slider('value', 50);
 			$("div#player-right div.volume").slider('value', 50);
@@ -98,7 +101,19 @@ $(document).ready(function() {
 			$("div#player-left div.volume").slider('value', 50+(ui.value*-1));
 			$("div#player-right div.volume").slider('value', 50+ui.value);
 		}
-    }
+		
+	 var R = 255;
+	  var G = parseInt(255*((100-playerLeft.getVolume())/100));
+	  var B = parseInt(255*((100-playerLeft.getVolume())/100));
+	  var rgb = "rgb(" + R + "," + G + "," + B + ")";
+	  $("div#vLeft").css("background-color",rgb);
+	  var R = 255;
+	  var G = parseInt(255*((100-playerRight.getVolume())/100));
+	  var B = parseInt(255*((100-playerRight.getVolume())/100));
+	  var rgb = "rgb(" + R + "," + G + "," + B + ")";
+	  $("div#vRight").css("background-color",rgb);
+
+    },
   })
   
 });
