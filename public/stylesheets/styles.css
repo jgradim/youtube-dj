@@ -57,6 +57,8 @@ div.player {
   height: 700px;
 }
 
+div.ui-slider { border: 1px solid #333; }
+
 div.volume, div.video { float: left; height: 295px; margin: 10px 0 0 10px; }
 div.video { width: 480px; }
 div.volume { font-size: 65%; }
@@ -89,7 +91,7 @@ span.loop-left, span.loop-right {
   display: block;
   width: 55px;
   height: 40px;
-  top: 355px;
+  top: 45px;
   color: #fff;
   line-height: 52px;
   font-size: 0.7em;
