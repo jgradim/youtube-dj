@@ -31,7 +31,7 @@ $(document).ready(function() {
         "format": 5,
         "restriction": "PT",
         "category": "music",
-        "max-results": 5
+        "max-results": 6
       },
       cache: false,
       dataType:'jsonp',

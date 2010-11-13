@@ -50,28 +50,40 @@ button#play-set.playing { background: #333 url(../images/play_pause.png) no-repe
 
 /* PLAYERS CONTAINER
 ------------------------------------------------------------------------------*/
-div.player { float: left; position: relative; }
-
 div.player {
+  position: relative;
+  float: left;
   width: 40%;
   height: 700px;
 }
 
-div.volume, div.video { float: left; height: 295px; margin: 10px 1px 1px 10px; }
+div.volume, div.video { float: left; height: 295px; margin: 10px 0 0 10px; }
+div.video { width: 480px; }
 div.volume { font-size: 65%; }
 div.volume a.ui-slider-handle{ margin-left: -3px; height: 0.5em; width: 2em;}
+
 div#vLeft{ background-color: rgb(255,0,0); }
-
-
-div.video { width: 480px; background: #cc0; }
-
 div.loop { width: 480px; font-size: 65%; }
 
-div.status { clear:left; padding: 10px 10px 10px 30px; }
-div#player-right div.status { padding: 10px; }
+div.status { clear:left; padding: 0 10px 10px 30px; position: relative; }
+div#player-right div.status { padding: 0 10px 10px 10px; }
 
-div.player div.progress { width: 480px; height: 10px; background: #000; margin-bottom: 10px;}
+div.player div.progress { width: 480px; height: 20px; background: #000; margin: 10px 0; }
 div.player div.progress span { display: block; height: 100%; width: 0; background: #fff; }
+div.progress p {
+  display: block;
+  width: 480px;
+  height: 20px;
+  position: absolute;
+  z-index: 9999;
+  top: 0;
+  font-size: 0.7em;
+  line-height: 22px;
+  color: #999;
+  text-align: center;
+  /*text-shadow: 1px 1px 1px #333;*/
+}
+
 span.loop-left, span.loop-right {
   position: absolute;
   display: block;
@@ -86,17 +98,24 @@ span.loop-left, span.loop-right {
 span.loop-left { background: url(../images/label_left.png) no-repeat; }
 span.loop-right { background: url(../images/label_right.png) no-repeat; }
 
+/* SEARCH
+------------------------------------------------------------------------------*/
 div.player form {
-  width: 480px;
-  margin: 30px 0 10px 30px;
+  width: 415px;
+  margin: 0 0 10px 55px;
   display: block;
   clear: left;
 }
-div#player-right form { margin: 30px 0 10px 10px; }
+div#player-right form { margin: 0 0 10px 36px; }
 div.player form input {
-  width: 458px;
-  padding: 10px;
-  border: 1px solid #000;
+  width: 100%;
+  padding: 10px 0 10px 10px;
+  border: 1px solid #ddd;
+  font-size: 1.3em;
+  font-style: bold;
+  border-radius: 3px;
+  background: #fff url(../images/search.png) no-repeat 97% center;
+  -webkit-box-shadow: inset 1px 1px 5px #666;
 }
 
 /* VIDEO CONTROLS
@@ -120,7 +139,7 @@ div.controls button, div.controls label {
   margin-right: 5px;
   border: 1px solid #222;
   border-radius: 3px;
-  /*-webkit-box-shadow: 0 0 10px #444;*/
+  -webkit-box-shadow: inset 0 0 5px #555;
   text-indent: -99999px;
 }
 div.controls label { width: 99px; height: 69px; margin-right: 0; }
@@ -144,10 +163,72 @@ div.player label.looping { background: #333 url(../images/loop.png) no-repeat -2
 
 /* SEARCH RESULTS
 ------------------------------------------------------------------------------*/
-div.search-results { position: absolute; display: none; }
+div.search-results {
+  margin-left: 40px;
+  display: none;
+}
+div#player-right div.search-results { margin-left: 25px; }
+
+div.search-results ol {
+  width: 452px;
+  padding: 3px 0 3px 3px;
+  float: left;
+  background: #000;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 10px #555;
+}
+div.search-results ol li {
+  width: 130px;
+  height: 150px;
+  padding: 5px;
+  display: block;
+  float: left;
+  border: 5px solid #000;
+  background: #333;
+  font-size: 0.7em;
+  font-style: bolder;
+  color: #fff;
+  text-align: center;
+  -webkit-transition: all 0.2s linear;
+}
 div.search-results ol li:hover {
   background: #ddd;
+  cursor: pointer;
+  color: #222;
 }
+
+/* PLAY QUEUE
+------------------------------------------------------------------------------*/
+ol.queue {
+  width: 420px;
+  margin: 10px 0 10px 55px;
+  padding: 5px;
+  background: #000;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 10px #555;
+}
+div#player-right ol.queue { margin-left: 35px; }
+
+ol.queue li {
+  position: relative;
+  height: 40px;
+  margin-bottom: 5px;
+  padding: 0 10px;
+  background: #333;
+  border: 1px solid #222;
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 0 5px #555;
+  color: #fff;
+  line-height: 40px;
+  font-size: 0.9em;
+}
+ol.queue li:last-child { margin-bottom: 0; }
+ol.queue li:hover { cursor: move; }
+ol.queue li a {
+  position: absolute;
+  right: 10px;
+}
+
 
 /* CROSSFADE
 ------------------------------------------------------------------------------*/
