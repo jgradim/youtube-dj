@@ -89,31 +89,47 @@ $(document).ready(function() {
     value: -50,
     animate: true,
     slide: function(ev, ui) {
-		var playerLeft = document.getElementById('ytplayer1');
-		var playerRight = document.getElementById('ytplayer2');
-		if(ui.value == 0){
-			$("div#player-left div.volume").slider('value', 50);
-			$("div#player-right div.volume").slider('value', 50);
-		}else if(ui.value < 0){
-			$("div#player-left div.volume").slider('value', 50+(ui.value*-1));
-			$("div#player-right div.volume").slider('value', 50+ui.value);
-		}else{
-			$("div#player-left div.volume").slider('value', 50+(ui.value*-1));
-			$("div#player-right div.volume").slider('value', 50+ui.value);
-		}
+		  var playerLeft = document.getElementById('ytplayer1');
+		  var playerRight = document.getElementById('ytplayer2');
+		  if(ui.value == 0){
+			  $("div#player-left div.volume").slider('value', 50);
+			  $("div#player-right div.volume").slider('value', 50);
+		  }
+		  else if(ui.value < 0){
+			  $("div#player-left div.volume").slider('value', 50+(ui.value*-1));
+			  $("div#player-right div.volume").slider('value', 50+ui.value);
+		  }
+		  else{
+			  $("div#player-left div.volume").slider('value', 50+(ui.value*-1));
+			  $("div#player-right div.volume").slider('value', 50+ui.value);
+		  }
 		
-	 var R = 255;
-	  var G = parseInt(255*((100-playerLeft.getVolume())/100));
-	  var B = parseInt(255*((100-playerLeft.getVolume())/100));
-	  var rgb = "rgb(" + R + "," + G + "," + B + ")";
-	  $("div#vLeft").css("background-color",rgb);
-	  var R = 255;
-	  var G = parseInt(255*((100-playerRight.getVolume())/100));
-	  var B = parseInt(255*((100-playerRight.getVolume())/100));
-	  var rgb = "rgb(" + R + "," + G + "," + B + ")";
-	  $("div#vRight").css("background-color",rgb);
-
-    },
+	    var R = 255;
+	    var G = parseInt(255*((100-playerLeft.getVolume())/100));
+	    var B = parseInt(255*((100-playerLeft.getVolume())/100));
+	    var rgb = "rgb(" + R + "," + G + "," + B + ")";
+	    $("div#vLeft").css("background-color",rgb);
+	    var R = 255;
+	    var G = parseInt(255*((100-playerRight.getVolume())/100));
+	    var B = parseInt(255*((100-playerRight.getVolume())/100));
+	    var rgb = "rgb(" + R + "," + G + "," + B + ")";
+	    $("div#vRight").css("background-color",rgb);
+    }
+  });
+  
+  // keyboard control
+  $(window).keypress(function(ev){
+    switch(ev.which) {
+      case 113: $("div#player-left button.play").click(); break; // Q
+      case 119: $("div#player-left button.mute").click(); break; // W
+      case 101: $("div#player-left button.next").click(); break; // E
+      case 114: $("div#player-left input.loop").change(); break; // R
+      
+      case 117: $("div#player-right button.play").click(); break; // U
+      case 105: $("div#player-right button.mute").click(); break; // I
+      case 111: $("div#player-right button.next").click(); break; // O
+      case 112: $("div#player-right input.loop").change(); break; // P
+    }
   })
   
 });
