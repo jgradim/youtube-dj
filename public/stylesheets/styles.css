@@ -65,13 +65,13 @@ div.volume { font-size: 65%; }
 div.volume a.ui-slider-handle{ margin-left: -4px; height: 0.5em; width: 2em;}
 
 div#vLeft{ background-color: rgb(255,0,0); }
-div.loop { width: 480px; font-size: 65%; }
 
 div.status { clear:left; padding: 0 10px 10px 30px; position: relative; }
 div#player-right div.status { padding: 0 10px 10px 10px; }
 
 div.player div.progress { width: 480px; height: 20px; background: #000; margin: 10px 0; }
 div.player div.progress span { display: block; height: 100%; width: 0; background: #fff; }
+
 div.progress p {
   display: block;
   width: 480px;
@@ -86,19 +86,34 @@ div.progress p {
   /*text-shadow: 1px 1px 1px #333;*/
 }
 
+div.loop { width: 480px; font-size: 65%; }
+
+div.loop a.ui-slider-handle{
+	height: 51px; 
+	width: 55px; 
+	margin-left: -10px;
+	visibility: hidden;
+}
+
+div.loop a.ui-slider-handle:first-child{
+	margin-left: -50px;
+}
+
 span.loop-left, span.loop-right {
   position: absolute;
   display: block;
   width: 55px;
-  height: 40px;
+  height: 51px;
   top: 45px;
   color: #fff;
-  line-height: 52px;
+  line-height: 75px;
   font-size: 0.7em;
   text-align: center;
+  margin-top: -16px;
 }
-span.loop-left { background: url(../images/label_left.png) no-repeat; }
-span.loop-right { background: url(../images/label_right.png) no-repeat; }
+
+span.loop-left {  margin-left: -2px;background: url(../images/label_left2.png) no-repeat; }
+span.loop-right { margin-left: -4px;background: url(../images/label_right2.png) no-repeat; }
 
 /* SEARCH
 ------------------------------------------------------------------------------*/

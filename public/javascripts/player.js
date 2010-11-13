@@ -122,7 +122,7 @@ function onYouTubePlayerReady(player_id) {
 		ytplayer.addEventListener("onStateChange", "state_changed_right");
 		ytplayer.setVolume(0);
 		adjust_left = 37;
-		adjust_right = 7;
+		adjust_right = 5;
 	}
 	
 	// progess / seek bar

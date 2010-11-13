@@ -2,6 +2,7 @@ String.prototype.yt_id = function() {
   return this.match(/\/videos\/(.*)$/)[1];
 }
 $(document).ready(function() {
+	
 
   // create video players
   create_player("#player-left",  1);
