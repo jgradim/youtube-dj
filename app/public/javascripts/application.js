@@ -36,19 +36,23 @@ $(document).ready(function() {
       cache: false,
       dataType:'jsonp',
       success: function(results) {
-        $.each(results.feed.entry, function(i, result){
-          
-          var li = Mustache.to_html(searched_video, {
-            video_id: result.id["$t"].yt_id(),
-            img: result["media$group"]["media$thumbnail"][0].url,
-            alt: result.title["$t"],
-            title: result.title["$t"]
+        try {
+          $.each(results.feed.entry, function(i, result){
+            
+            var li = Mustache.to_html(searched_video, {
+              video_id: result.id["$t"].yt_id(),
+              img: result["media$group"]["media$thumbnail"][0].url,
+              alt: result.title["$t"],
+              title: result.title["$t"]
+            });
+            
+            ol.append(li);
           });
-          
-          ol.append(li);
-        });
-        ol.parent().show();
-        $(this).find("input").val('');
+          ol.parent().show();
+          $(this).find("input").val('');
+        }
+        catch(err) {  // no results
+        }
       }
     });
     return false;
