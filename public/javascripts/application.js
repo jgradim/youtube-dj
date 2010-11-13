@@ -17,6 +17,7 @@ $(document).ready(function() {
   });
   
   // searching
+  $('input[name=q]').keypress(function(ev){ ev.stopPropagation(); });
   $("div.player form").submit(function(){
     var q = $(this).find("input").val();
     var ol = $(this).siblings('div.search-results').find('ol');

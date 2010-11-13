@@ -191,6 +191,7 @@ div.search-results ol li {
   font-style: bolder;
   color: #fff;
   text-align: center;
+  overflow: hidden;
   -webkit-transition: all 0.2s linear;
 }
 div.search-results ol li:hover {
